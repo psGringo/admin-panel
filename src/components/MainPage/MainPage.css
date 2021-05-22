@@ -1,0 +1,8 @@
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    border-color: red;
+    border-style: solid;
+    /*padding: 2rem 2rem 2rem 2rem;*/
+    margin: 2rem 2rem 2rem 2rem
+}

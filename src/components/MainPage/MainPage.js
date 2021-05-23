@@ -10,7 +10,6 @@ export const MainPage = () => {
          <Header />
          <Filters />
          <Table />
-           beginning of the project
         </div>
     );
 }

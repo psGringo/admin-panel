@@ -1,7 +1,5 @@
 .tableFooter {
     display: flex;
     flex-direction: column;
-    border-color: red;
-    border-style: solid;
     /*margin: 0rem 0.5rem 0.5rem 0.5rem*/
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from './Theme.module.css';
-// import sun from '../../static/sun.svg'
 import { ReactComponent as Sun } from '../../static/sun.svg';
 
 export const Theme = () => {

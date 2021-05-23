@@ -7,7 +7,6 @@ export const Header = () => {
     return (
         <div className={styles._}>
             <div className={styles.title}> Список заказов</div>
-            {/*<div>123</div>*/}
             <Theme />
         </div>
     );

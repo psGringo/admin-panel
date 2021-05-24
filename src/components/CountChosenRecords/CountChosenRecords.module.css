@@ -1,0 +1,15 @@
+._ {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.text {
+    font-family: Ubuntu;
+    font-size: 0.8rem;
+    color: #459DF5;
+}
+
+.count {
+    margin-left: 0.2rem;
+}

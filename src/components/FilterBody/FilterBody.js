@@ -11,7 +11,7 @@ export const FilterBody = () => {
             <FilterIssueDate />
             <OrderStatusCombobox />
             <FilterOrderSum />
-            Фильтр
+            <div className={styles.applyText}>Применить</div>
         </div>
     );
 }

@@ -1,0 +1,19 @@
+._ {
+    display: flex;
+    margin-top: 0.3rem;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-family: Ubuntu;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: white;
+    background-color: #459DF5;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}

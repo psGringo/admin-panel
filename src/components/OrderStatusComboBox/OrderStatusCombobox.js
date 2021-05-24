@@ -3,13 +3,7 @@ import styles from './OrderStatusCombobox.module.css';
 import {Checkbox} from "../Checkbox/Checkbox";
 import {OrderSelect} from "../OrderSelect/OrderSelect";
 
-// const options = [
-//     { value: 'chocolate', label: 'Chocolate' },
-//     { value: 'strawberry', label: 'Strawberry' },
-//     { value: 'vanilla', label: 'Vanilla' },
-// ];
-
-const selectValues = [
+const options = [
     'Новый',
     'Рассчет',
     'Подтвержден',
@@ -24,7 +18,7 @@ export const OrderStatusCombobox = ({data}) => {
            <div className={styles.title}> Статус заказа </div>
            <OrderSelect
                defaultValue="Любой"
-               values={selectValues}
+               values={options}
            >
            </OrderSelect>
        </div>

@@ -1,4 +1,6 @@
 .tableContents {
     display: flex;
     flex-direction: column;
+    height: 10rem;
+    overflow: auto;
 }

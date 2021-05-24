@@ -9,6 +9,8 @@
 .title {
     margin-left: 1rem;
     font-family: Ubuntu;
+    font-size: 0.8rem;
+    font-weight: 400;
 }
 
 .inputDates {

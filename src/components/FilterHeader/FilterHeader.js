@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './FiltersHeader.module.css';
 import {SearchBox} from "../SearchBox/SearchBox";
-import {FiltersToggleButton} from "../FiltersToggleButton/FiltersToggleButton";
+import {ButtonFiltersToggle} from "../ButtonFiltersToggle/ButtonFiltersToggle";
 import {LoadIndication} from "../LoadIndication/LoadIndication";
 
 export const FilterHeader = () => {
@@ -9,7 +9,7 @@ export const FilterHeader = () => {
         <div className={styles._}>
           <div className={styles.searchBoxAndFiltersToggleButton}>
               <SearchBox />
-              <FiltersToggleButton />
+              <ButtonFiltersToggle />
           </div>
           <LoadIndication />
         </div>

@@ -6,7 +6,7 @@ import {TableFooter} from "../TableFooter/TableFooter";
 
 export const Table = () => {
     return (
-        <div className="table">
+        <div className="_">
             <TableHeader/>
             <TableContents/>
             <TableFooter/>

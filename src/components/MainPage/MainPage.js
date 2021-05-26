@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './MainPage.css';
 import {Header} from "../Header/Header";
-import {FilterHeader} from "../FilterHeader/FilterHeader";
+import {Filter} from "../Filter/Filter";
 import {Table} from "../Table/Table";
-import {FilterBody} from "../FilterBody/FilterBody";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleIsFilterVisible} from "../../actions/filterActions";
 
 export const MainPage = () => {
+
+
     return (
-        <div className = "mainPage">
-         <Header />
-         <FilterHeader />
-         <FilterBody />
-         <Table />
+        <div className="mainPage">
+            <Header/>
+            <Filter/>
+            <Table/>
         </div>
     );
 }

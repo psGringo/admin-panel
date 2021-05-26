@@ -7,7 +7,7 @@ export const TableHeader = () => {
     return (
         <div className={styles._}>
             <div className={styles.title} style={{width: "9.25rem"}} >
-                <Checkbox/>
+                <Checkbox />
                 #
             </div>
 

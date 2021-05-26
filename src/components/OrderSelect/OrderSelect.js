@@ -2,21 +2,28 @@ import React, {useState} from "react";
 import styles from './OrderSelect.module.css';
 import cc from "classcat";
 import {Checkbox} from "../Checkbox/Checkbox";
+import {useDispatch, useSelector} from "react-redux";
+import {AllActions} from "../../actions";
 
 
 export const OrderSelect = ({values, caption, defaultValue}) => {
-    const [isExpanded, setIsExpanded] = useState(false)
+
+    const isExpanded = useSelector(state => state.orderSelect.isExpanded);
+    const dispatch = useDispatch();
 
     const options = values.map((value) => (
         <Checkbox key={value} value={value}/>
     ))
 
+
+    const handleClick = () => {
+        dispatch(AllActions.orderSelectActions.toggleOrderSelect());
+    }
+
     return (
         <div className={styles._}>
 
-            <div className={styles.selectBox} onClick={() => {
-                setIsExpanded(!isExpanded)
-            }}>
+            <div className={styles.selectBox} onClick={handleClick}>
                 <select className={styles.select} id="selectBox">
                     <option>{defaultValue}</option>
                 </select>

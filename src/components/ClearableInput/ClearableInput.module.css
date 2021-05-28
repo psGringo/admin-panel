@@ -1,5 +1,4 @@
 ._ {
-    font-family: 'Ubuntu';
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,7 +17,6 @@ _:hover {
     flex: 1 0;
     min-width: 2rem;
     min-height: 1rem;
-    font-family: Ubuntu;
     font-size: 0.8rem;
     background-color: white;
     padding-left: 5px;
@@ -31,7 +29,6 @@ input:focus {
 
 .firstLetter {
     min-height: 1rem;
-    font-family: Ubuntu;
     font-size: 0.8rem;
 }
 

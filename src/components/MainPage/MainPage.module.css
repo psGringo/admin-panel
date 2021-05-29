@@ -1,7 +1,6 @@
 ._ {
     display: flex;
     flex-direction: column;
-    /*justify-content: space-between;*/
     min-height: fit-content;
     min-width: fit-content;
     height: 90vh;

@@ -15,7 +15,7 @@ const options = [
 export const OrderStatusCombobox = () => {
     return (
        <div className={styles._}>
-           <div className={styles.title}> Статус заказа </div>
+           <div> Статус заказа </div>
            <OrderSelect
                defaultValue="Любой"
                values={options}

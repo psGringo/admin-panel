@@ -6,10 +6,14 @@
 .title {
     display: flex;
     align-items: center;
-    font-size: 0.8rem;
-    font-weight: 400;
     color: white;
     background-color: #459DF5;
+    width: 9.25rem;
+    height: 2rem;
+}
+
+.titlePerson {
+    flex-grow: 1;
 }
 
 .icon {

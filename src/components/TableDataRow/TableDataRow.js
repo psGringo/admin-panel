@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './TableDataRow.module.css';
 import {Checkbox} from "../Checkbox/Checkbox";
+import cc from "classcat";
 
 
 export const TableDataRow = ({contents}) => {
@@ -38,7 +39,13 @@ export const TableDataRow = ({contents}) => {
                 {summa}
             </div>
 
-            <div className={styles.title} >
+            <div
+                 className={cc({
+                     [styles.title]: true,
+                     [styles.titlePerson]: true,
+                 })}
+
+            >
                 {person}
             </div>
         </div>

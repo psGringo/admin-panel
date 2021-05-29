@@ -1,6 +1,6 @@
 ._ {
     display: flex;
-    border-width: 2px;
+    /*border-width: 2px;*/
     border-bottom-width: 0.05rem;
     border-bottom-color: #EBF0F5;
     border-bottom-style: solid;
@@ -10,10 +10,12 @@
     display: flex;
     align-items: center;
     height: 2.5rem;
-    font-size: 0.8rem;
-    font-weight: 400;
     text-align: left;
     width: 9.25rem
+}
+
+.titlePerson {
+    flex-grow: 1;
 }
 
 .icon {

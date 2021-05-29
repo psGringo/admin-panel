@@ -12,6 +12,11 @@
     height: 2rem;
 }
 
+.titleFirstColumn {
+    display: flex;
+    margin-left: 1rem;
+}
+
 .titlePerson {
     flex-grow: 1;
 }

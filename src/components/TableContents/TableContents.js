@@ -119,9 +119,6 @@ const contents = [
 export const TableContents = () => {
     return (
         <div className={styles._}>
-            <div>hi</div>
-            <div>world</div>
-            world
             {contents.map((order) => <TableDataRow key = {order.id} contents={order}/>)}
             {contents.map((order) => <TableDataRow key = {order.id} contents={order}/>)}
         </div>

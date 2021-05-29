@@ -1,6 +1,5 @@
 ._ {
     display: flex;
-    /*border-width: 2px;*/
     border-bottom-width: 0.05rem;
     border-bottom-color: #EBF0F5;
     border-bottom-style: solid;
@@ -12,6 +11,11 @@
     height: 2.5rem;
     text-align: left;
     width: 9.25rem
+}
+
+.titleFirstColumn {
+    display: flex;
+    margin-left: 1rem;
 }
 
 .titlePerson {

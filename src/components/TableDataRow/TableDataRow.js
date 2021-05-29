@@ -13,38 +13,42 @@ export const TableDataRow = ({contents}) => {
         statusIcon,
         positions,
         summa,
-        person} = contents;
+        person
+    } = contents;
 
     return (
         <div className={styles._}>
-            <div className={styles.title} >
-                <Checkbox/>
-                {id}
+            <div className={styles.title}>
+                <div className={styles.titleFirstColumn}>
+                    <Checkbox />
+                    {id}
+                </div>
+
+
             </div>
 
-            <div className={styles.title} >
+            <div className={styles.title}>
                 {date}
             </div>
 
-            <div className={styles.title} >
+            <div className={styles.title}>
                 {statusIcon}
                 {status}
             </div>
 
-            <div className={styles.title} >
+            <div className={styles.title}>
                 {positions}
             </div>
 
-            <div className={styles.title} >
+            <div className={styles.title}>
                 {summa}
             </div>
 
             <div
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.titlePerson]: true,
-                 })}
-
+                className={cc({
+                    [styles.title]: true,
+                    [styles.titlePerson]: true,
+                })}
             >
                 {person}
             </div>

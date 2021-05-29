@@ -7,37 +7,40 @@ import cc from "classcat";
 export const TableHeader = () => {
     return (
         <div className={styles._}>
-            <div className={styles.title}  >
-                <Checkbox />
-                #
+            <div className={styles.title}>
+                <div className={styles.titleFirstColumn}>
+                    <Checkbox/>
+                    #
+                </div>
+
             </div>
 
             <div className={styles.title}>
                 Дата
-                <V_Arrow className={styles.icon} />
+                <V_Arrow className={styles.icon}/>
             </div>
 
             <div className={styles.title}>
                 Статус
-                <V_Arrow className={styles.icon} />
+                <V_Arrow className={styles.icon}/>
             </div>
 
             <div className={styles.title}>
                 Позиций
-                <V_Arrow className={styles.icon} />
+                <V_Arrow className={styles.icon}/>
             </div>
 
             <div className={styles.title}>
                 Сумма
-                <V_Arrow className={styles.icon} />
+                <V_Arrow className={styles.icon}/>
             </div>
 
-            <div   className={cc({
+            <div className={cc({
                 [styles.title]: true,
                 [styles.titlePerson]: true,
             })}>
                 ФИО покупателя
-                <V_Arrow className={styles.icon} />
+                <V_Arrow className={styles.icon}/>
             </div>
         </div>
 

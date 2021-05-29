@@ -3,6 +3,7 @@ import styles from './FilterBody.module.css';
 import {FilterIssueDate} from "../FilterIssueDate/FilterIssueDate";
 import {FilterOrderSum} from "../FilterOrderSum/FilterOrderSum";
 import {OrderStatusCombobox} from "../OrderStatusComboBox/OrderStatusCombobox";
+import {ButtonApply} from "../ButtonApply/ButtonApply";
 
 
 export const FilterBody = () => {
@@ -11,7 +12,7 @@ export const FilterBody = () => {
             <FilterIssueDate />
             <OrderStatusCombobox />
             <FilterOrderSum />
-            <div className={styles.applyText}>Применить</div>
+            <ButtonApply />
         </div>
     );
 }

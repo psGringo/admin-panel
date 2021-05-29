@@ -9,7 +9,7 @@
     width: 10rem;
 }
 
-_:hover {
+._:hover {
     box-shadow: 1px 1px 1px thistle;
 }
 

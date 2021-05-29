@@ -9,9 +9,8 @@
     width: 20rem;
 }
 
-_:hover {
+._:hover {
     box-shadow: 1px 1px 1px thistle;
-
 }
 
 .input {

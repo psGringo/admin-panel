@@ -1,16 +1,15 @@
 import React from "react";
-import styles from './ButtonChangeStatus.module.css';
-import {ReactComponent as Pencil} from '../../static/pencil.svg';
+import styles from './ButtonApply.module.css';
+import {ReactComponent as Bin} from '../../static/bin.svg';
 import {IconButton} from "../IconButton/IconButton";
-import styles_icon_button from "../IconButton/IconButton.module.css";
 import cc from "classcat";
+import styles_icon_button from "../IconButton/IconButton.module.css";
 
-export const ButtonChangeStatus = () => {
+export const ButtonApply = () => {
     return (
         <div>
             <IconButton
-                text="Изменить статус"
-                icon={<Pencil/>}
+                text="Применить"
                 className={cc({
                     [styles._]: true,
                     [styles_icon_button._]: true

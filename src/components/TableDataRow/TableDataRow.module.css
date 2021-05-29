@@ -9,9 +9,11 @@
 .title {
     display: flex;
     align-items: center;
+    height: 2.5rem;
     font-size: 0.8rem;
     font-weight: 400;
     text-align: left;
+    width: 9.25rem
 }
 
 .icon {

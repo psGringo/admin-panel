@@ -4,6 +4,7 @@
     align-items: start;
     text-align: left;
     margin-top: 1rem;
+    cursor: pointer;
 }
 
 .title {

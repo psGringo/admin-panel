@@ -1,8 +1,10 @@
-.mainPage {
+._ {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
     min-height: fit-content;
     min-width: fit-content;
     height: 90vh;
     margin: 3rem;
-    display: flex;
-    flex-direction: column;
+    border: red solid 1px;
 }

@@ -8,7 +8,7 @@ import {TableFooter} from "../TableFooter/TableFooter";
 export const MainPage = () => {
 
     return (
-            <div className={classes.mainPage}>
+            <div className={classes._}>
                 <Header />
                 <Filter />
                 <Table />

@@ -12,7 +12,7 @@ const options = [
     'Отменен',
 ]
 
-export const OrderStatusCombobox = ({data}) => {
+export const OrderStatusCombobox = () => {
     return (
        <div className={styles._}>
            <div className={styles.title}> Статус заказа </div>

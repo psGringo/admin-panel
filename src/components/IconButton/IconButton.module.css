@@ -1,0 +1,20 @@
+._ {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 0.8rem;
+    font-weight: 400;
+    border-style: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
+.text {
+    margin-left: 0.5rem;
+}

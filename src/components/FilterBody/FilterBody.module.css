@@ -4,11 +4,3 @@
     align-items: center;
     background-color: #EBF0F5;
 }
-
-.applyText {
-    color: #459DF5;
-    font-size: 0.81rem;
-    font-weight: 400;
-    margin-top: 2rem;
-    cursor: pointer;
-}

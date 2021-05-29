@@ -8,8 +8,8 @@ export const FilterIssueDate = () => {
         <div className={styles._}>
             <div className={styles.title}>Дата оформления</div>
             <div className={styles.inputDates}>
-                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "c" width="8.87rem" />
-                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "по" width="8.87rem" margin="0 0 0 1rem" children = {ClearButton} />
+                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "c" />
+                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "по" />
             </div>
 
         </div>

@@ -21,7 +21,10 @@ export const TableDataRow = ({contents}) => {
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
                     <Checkbox />
-                    {id}
+                    <div className={styles.id}>
+                        {id}
+                    </div>
+
                 </div>
 
 

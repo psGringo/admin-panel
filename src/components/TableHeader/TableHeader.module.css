@@ -21,6 +21,10 @@
     flex-grow: 1;
 }
 
+.id {
+    margin-left: 1rem;
+}
+
 .icon {
     width: 1rem;
     height: 1rem;

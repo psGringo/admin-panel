@@ -10,9 +10,10 @@ export const TableHeader = () => {
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
                     <Checkbox/>
-                    #
+                    <div className={styles.id}>
+                        #
+                    </div>
                 </div>
-
             </div>
 
             <div className={styles.title}>

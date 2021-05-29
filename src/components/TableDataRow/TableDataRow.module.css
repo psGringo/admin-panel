@@ -18,6 +18,10 @@
     margin-left: 1rem;
 }
 
+.id {
+    margin-left: 1rem;
+}
+
 .titlePerson {
     flex-grow: 1;
 }

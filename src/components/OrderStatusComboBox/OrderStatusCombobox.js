@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import styles from './OrderStatusCombobox.module.css';
-import {Checkbox} from "../Checkbox/Checkbox";
 import {OrderSelect} from "../OrderSelect/OrderSelect";
+import {ClearableInput} from "../ClearableInput/ClearableInput";
+
 
 const options = [
     'Новый',
@@ -14,13 +15,20 @@ const options = [
 
 export const OrderStatusCombobox = () => {
     return (
-       <div className={styles._}>
-           <div> Статус заказа </div>
-           <OrderSelect
-               defaultValue="Любой"
-               values={options}
-           >
-           </OrderSelect>
-       </div>
+        <div className={styles._}>
+
+            <div className={styles.title}> Статус заказа</div>
+
+            <div className={styles.select}>
+
+                <OrderSelect
+                    defaultValue="Любой"
+                    values={options}
+                />
+
+            </div>
+
+
+        </div>
     );
 };

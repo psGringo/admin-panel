@@ -36,3 +36,7 @@ input:focus {
     stroke: deepskyblue;
 }
 
+.icon:hover {
+    cursor: pointer;
+}
+

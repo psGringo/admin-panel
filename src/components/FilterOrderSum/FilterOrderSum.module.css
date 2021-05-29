@@ -10,6 +10,10 @@
     margin-left: 1rem;
 }
 
+.clearableInputUntil {
+    margin-left: 1rem;
+}
+
 .inputDates {
     display: flex;
     flex-direction: row;

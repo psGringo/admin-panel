@@ -1,12 +1,13 @@
 import React from "react";
 import styles from './LoadIndication.module.css';
-import {ReactComponent as Sun} from "../../static/refresh.svg";
+import {ReactComponent as Refresh} from "../../static/refresh.svg";
+import {IconText} from "../IconText/IconText";
 
 export const LoadIndication = () => {
     return (
-        <div className={styles._}>
-            <Sun className = {styles.icon} />
-            <div className={styles.title}> Загрузка</div>
-        </div>
+        <IconText
+            icon={<Refresh/>}
+            text="Загрузка"
+        />
     );
 }

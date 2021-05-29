@@ -1,8 +1,7 @@
 ._ {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     width: 12rem;
+    height: 1.8rem;
 }
 
 .selectBox {
@@ -14,18 +13,17 @@
 .select {
     display: flex;
     border: 1px solid #459df5;
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 4px 4px 4px 22px;
-    height: 32px;
-    order: 1;
-    margin: 8px 0px;
-    appearance: none;
+    border-radius: 5px;
+    height: 1.9rem;
+    appearance: auto;
     width: 12rem;
-
 }
 
-select:hover {
+.select:hover {
+    cursor: pointer;
+}
+
+.selectBox:hover {
     cursor: pointer;
 }
 
@@ -50,13 +48,19 @@ select:hover {
     0px 2px 2px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     width: 12rem;
-    top: 14rem;
+    top: 12.5rem;
     background-color: white;
     padding: 8px 16px;
     z-index: 99;
+    font-size: 1rem;
 }
 
 .title {
     font-weight: bold;
     font-size: 1.625rem;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
 }

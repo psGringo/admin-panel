@@ -9,7 +9,7 @@ export const FilterIssueDate = () => {
             <div className={styles.title}>Дата оформления</div>
             <div className={styles.inputDates}>
                 <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "c" />
-                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "по" />
+                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "по" style={styles.clearableInputUntil} />
             </div>
 
         </div>

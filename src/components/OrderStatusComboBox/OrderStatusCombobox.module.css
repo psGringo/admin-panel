@@ -4,5 +4,12 @@
     align-items: start;
     text-align: left;
     margin-top: 1rem;
-    cursor: pointer;
+}
+
+.title {
+    margin-left: 0.5rem;
+}
+
+.select {
+    margin: 0.5rem 0.5rem;
 }

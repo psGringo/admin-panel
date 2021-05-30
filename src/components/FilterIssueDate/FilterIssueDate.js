@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './FilterIssueDate.module.css';
 import {ClearableInput} from "../ClearableInput/ClearableInput";
-import {ReactComponent as ClearButton} from '../../static/x-large.svg';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {ClearableInputDate} from "../ClearableInputDate/ClearableInputDate";
 
 export const FilterIssueDate = () => {
+
     return (
         <div className={styles._}>
             <div className={styles.title}>Дата оформления</div>
+
             <div className={styles.inputDates}>
-                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "c" />
-                <ClearableInput placeholder="dd.mm.yyyy" firstLetter = "по" style={styles.clearableInputUntil} />
+                <ClearableInputDate placeholder="dd.mm.yyyy" firstLetter = "c" />
+                <ClearableInputDate placeholder="dd.mm.yyyy" firstLetter = "по" style={styles.clearableInputUntil} />
             </div>
 
         </div>

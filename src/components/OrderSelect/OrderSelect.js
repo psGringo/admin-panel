@@ -3,8 +3,8 @@ import styles from './OrderSelect.module.css';
 import cc from "classcat";
 import {Checkbox} from "../Checkbox/Checkbox";
 import {useDispatch, useSelector} from "react-redux";
-import {AllActions} from "../../actions";
 import {ReactComponent as Arrow} from '../../static/v_arrow.svg';
+import {toggleOrderSelect} from "../../actions/orderSelectActions";
 
 
 export const OrderSelect = ({values, defaultValue}) => {
@@ -18,7 +18,7 @@ export const OrderSelect = ({values, defaultValue}) => {
 
 
     const handleClick = () => {
-        dispatch(AllActions.orderSelectActions.toggleOrderSelect());
+        dispatch(toggleOrderSelect());
     }
 
     return (

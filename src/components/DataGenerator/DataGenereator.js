@@ -2,7 +2,7 @@ import {ReactComponent as DotIcon} from "../../static/dot.svg";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-export const DataGenerator = (countRecords) => {
+export const GenerateData = (countRecords) => {
     const data = [];
     const states = useSelector(state => state.orderStates);
     for (let i = 0; i < countRecords; i++){

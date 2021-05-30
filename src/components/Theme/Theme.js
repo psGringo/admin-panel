@@ -2,8 +2,8 @@ import React from "react";
 import styles from './Theme.module.css';
 import { ReactComponent as Sun } from '../../static/sun.svg';
 import {useDispatch, useSelector} from "react-redux";
-import {AllActions} from "../../actions";
 import {IconText} from "../IconText/IconText";
+import {toggleTheme} from "../../actions/themeActions";
 
 export const Theme = () => {
     const isLightTheme = useSelector(state => state.theme.isLight)
@@ -11,7 +11,7 @@ export const Theme = () => {
 
     const handleClick = () => {
         alert('isLightTheme = ' + isLightTheme +' +  to do dark theme');
-        dispatch(AllActions.themeActions.toggleTheme());
+        dispatch(toggleTheme());
     }
 
     return (

@@ -1,10 +1,11 @@
-import {GET_TABLE_DATA, GENERATE_RANDOM_TABLE_DATA} from "../actions/actionTypes";
+import {GENERATE_RANDOM_TABLE_DATA, FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON} from "../actions/actionTypes";
 
 const INITIAL_STATE = {
-    data: []
+    data: [],
+    searchTextOrderNoOrPerson: ''
 }
 
-export const tableData = (state = [], action) => {
+export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case  GENERATE_RANDOM_TABLE_DATA: {
@@ -14,9 +15,12 @@ export const tableData = (state = [], action) => {
             }
         }
 
-        case GET_TABLE_DATA:
-            return INITIAL_STATE;
-
+        case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON: {
+            return {
+                ...state,
+                searchTextOrderNoOrPerson: action.payload
+            }
+        }
 
         default:
             return state;

@@ -8,7 +8,10 @@ import {generateRandomTableData} from "../../actions/tableDataActions";
 export const TableContents = () => {
     const dispatch = useDispatch();
     dispatch(generateRandomTableData());
-    const tableData = useSelector(state => state.tableData.data);
+    const fullTableData = useSelector(state => state.tableData.data);
+    const searchText = useSelector(state => state.tableData.searchTextOrderNoOrPerson)
+    const tableData = fullTableData.filter((item) => (item.person.startsWith(searchText) && (item.id.toString().startsWith(searchText))));
+
     return (
         <div className={styles._}>
             {tableData.map((order) => <TableDataRow key = {order.id} contents={order}/>)}

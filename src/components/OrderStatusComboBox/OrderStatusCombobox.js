@@ -2,18 +2,13 @@ import React, {useState} from 'react';
 import styles from './OrderStatusCombobox.module.css';
 import {OrderSelect} from "../OrderSelect/OrderSelect";
 import {ClearableInput} from "../ClearableInput/ClearableInput";
+import {useSelector} from "react-redux";
 
 
-const options = [
-    'Новый',
-    'Рассчет',
-    'Подтвержден',
-    'Отложен',
-    'Выполнен',
-    'Отменен',
-]
+
 
 export const OrderStatusCombobox = () => {
+    const states = useSelector(state => state.orderStates);
     return (
         <div className={styles._}>
 
@@ -23,7 +18,7 @@ export const OrderStatusCombobox = () => {
 
                 <OrderSelect
                     defaultValue="Любой"
-                    values={options}
+                    values={states}
                 />
 
             </div>

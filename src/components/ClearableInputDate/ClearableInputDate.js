@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import styles from './ClearableInputDate.module.css';
 import {ReactComponent as ClearButton} from '../../static/x-large.svg';
 import cc from "classcat";
-import DatePicker from "react-datepicker";
+import DatePicker, {registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import locale from "date-fns/locale/ru";
+import {useDispatch, useSelector} from "react-redux";
+registerLocale("ru", locale)
 
 const CustomInput = (props) => {
     return (
         <input
-            // className={[classes.TransparentInput, "uk-input"].join(" ")}
             className ={styles.input}
             onClick={props.onClick}
             value={props.value}
@@ -20,14 +22,13 @@ const CustomInput = (props) => {
 }
 
 
-export const ClearableInputDate = ({placeholder, firstLetter, style}) => {
+export const ClearableInputDate = ({firstLetter, style, value, onChange}) => {
 
     const combinedStyles = cc({
         [styles._]: true,
         [style]: true
     })
 
-    const [value, onChange] = useState();
 
     const handleDateChangeRaw = (e) => {
         e.preventDefault();
@@ -36,6 +37,7 @@ export const ClearableInputDate = ({placeholder, firstLetter, style}) => {
     const handleClearButtonClick = () => {
         onChange(null);
     }
+
 
     return (
         <div className={combinedStyles}>
@@ -48,9 +50,10 @@ export const ClearableInputDate = ({placeholder, firstLetter, style}) => {
                 selected = {value}
                 placeholderText = "dd.mm.yyyy"
                 onChangeRaw={handleDateChangeRaw}
+                locale = 'ru'
             />
 
-            <ClearButton className={styles.icon} onClick = {handleClearButtonClick} />
+            <ClearButton className={styles.icon} onClick = {handleClearButtonClick}/>
         </div>
     );
 };

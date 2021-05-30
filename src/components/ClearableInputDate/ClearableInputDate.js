@@ -14,6 +14,7 @@ const CustomInput = (props) => {
             value={props.value}
             type="text"
             readOnly={true}
+            placeholder = "dd.mm.yyyy"
         />
     )
 }
@@ -26,10 +27,14 @@ export const ClearableInputDate = ({placeholder, firstLetter, style}) => {
         [style]: true
     })
 
-    const [value, onChange] = useState(new Date());
+    const [value, onChange] = useState();
 
     const handleDateChangeRaw = (e) => {
         e.preventDefault();
+    }
+
+    const handleClearButtonClick = () => {
+        onChange(null);
     }
 
     return (
@@ -39,13 +44,13 @@ export const ClearableInputDate = ({placeholder, firstLetter, style}) => {
             <DatePicker
                 customInput = {<CustomInput />}
                 dateFormat="dd-MM-yyyy"
-                selected={value}
                 onChange={onChange}
+                selected = {value}
                 placeholderText = "dd.mm.yyyy"
                 onChangeRaw={handleDateChangeRaw}
             />
 
-            <ClearButton className={styles.icon}/>
+            <ClearButton className={styles.icon} onClick = {handleClearButtonClick} />
         </div>
     );
 };

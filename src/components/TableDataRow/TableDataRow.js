@@ -31,7 +31,7 @@ export const TableDataRow = ({contents}) => {
             </div>
 
             <div className={styles.title}>
-                {date}
+                {date.toLocaleDateString()}
             </div>
 
             <div className={styles.title}>

@@ -5,11 +5,13 @@ import {useDispatch, useSelector} from "react-redux";
 export const GenerateData = (countRecords) => {
     const data = [];
     const states = useSelector(state => state.orderStates);
+
     for (let i = 0; i < countRecords; i++){
+        const randomDateValue = randomDate(new Date(2012, 0, 1), new Date());
         data.push(
             {
                 id: i,
-                date: randomDate(new Date(2012, 0, 1), new Date()).toLocaleDateString(),
+                date: randomDateValue,
                 status: getRandomFromArray(states),
                 statusIcon: <DotIcon width = "16px" height = "16px" />,
                 positions: Math.floor(Math.random() * 10),

@@ -3,12 +3,13 @@ import styles from './FilterIssueDate.module.css';
 import "react-datepicker/dist/react-datepicker.css";
 import {ClearableInputDate} from "../ClearableInputDate/ClearableInputDate";
 import {useDispatch, useSelector} from "react-redux";
-import {setFilterDateFrom, setFilterDateTo, setFilterDateUntil} from "../../actions/filterActions";
+import {setFilterDateFrom, setFilterDateTo} from "../../actions/tableDataActions";
+
 
 export const FilterIssueDate = () => {
 
-    const valueFrom = useSelector(state => state.filter.dateFrom)
-    const valueTo = useSelector(state => state.filter.dateTo)
+    const valueFrom = useSelector(state => state.tableData.dateFrom)
+    const valueTo = useSelector(state => state.tableData.dateTo)
     const dispatch = useDispatch();
 
     const handleOnChangeFrom = (date) => {
@@ -39,7 +40,6 @@ export const FilterIssueDate = () => {
                 />
 
             </div>
-
         </div>
     );
 }

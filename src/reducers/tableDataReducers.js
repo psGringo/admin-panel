@@ -10,12 +10,6 @@ import {
 const INITIAL_STATE = {
     initialData: [],
     data: [],
-    searchTextOrderNoOrPerson: '',
-    dateFrom: null,
-    dateTo: null,
-    summaFrom: null,
-    summaTo: null,
-    filterOrderStates: []
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {
@@ -26,39 +20,33 @@ const filterOrderNoOrPerson = (state, searchText) => {
     return state.initialData;
 }
 
-const updateOrderStates = (state, orderState) => {
-    const index = state.filterOrderStates.indexOf(orderState);
-    (index === -1) ? state.filterOrderStates.push(orderState) : state.filterOrderStates.splice(index, 1);
-    return state.filterOrderStates;
-}
-
-const filterPanel = (state) => {
+const applyPanelFilters = (state, panelFilters) => {
 
     if (
-        (!state.dateFrom) &&
-        (!state.dateTo) &&
-        (state.filterOrderStates.length === 0) &&
-        (!state.summaFrom) &&
-        (!state.summaTo)
+        (!panelFilters.dateFrom) &&
+        (!panelFilters.dateTo) &&
+        (panelFilters.filterOrderStates.length === 0) &&
+        (!panelFilters.summaFrom) &&
+        (!panelFilters.summaTo)
     )
         return state.initialData;
 
     let result = state.initialData.slice();
 
-    if (state.dateFrom)
-        result = result.filter((item) => (((item.date).getTime() - state.dateFrom.getTime()) >= 0));
+    if (panelFilters.dateFrom)
+        result = result.filter((item) => (((item.date).getTime() - panelFilters.dateFrom.getTime()) >= 0));
 
     if (state.dateTo)
-        result = result.filter((item) => (((item.date).getTime() - state.dateTo.getTime()) <= 0));
+        result = result.filter((item) => (((item.date).getTime() - panelFilters.dateTo.getTime()) <= 0));
 
-    if (state.filterOrderStates.length != 0)
-        result = result.filter((item) => state.filterOrderStates.includes(item.state))
+    if (panelFilters.filterOrderStates.length != 0)
+        result = result.filter((item) => panelFilters.filterOrderStates.includes(item.state))
 
-    if (state.summaFrom)
-        result = result.filter((item) => item.summa >= state.summaFrom)
+    if (panelFilters.summaFrom)
+        result = result.filter((item) => item.summa >= panelFilters.summaFrom)
 
-    if (state.summaTo)
-        result = result.filter((item) => item.summa <= state.summaTo)
+    if (panelFilters.summaTo)
+        result = result.filter((item) => item.summa <= panelFilters.summaTo)
 
     return result;
 }
@@ -83,45 +71,10 @@ export const tableData = (state = INITIAL_STATE, action) => {
             }
         }
 
-        case SET_FILTER_DATE_FROM:
-            return {
-                ...state,
-                dateFrom: action.payload,
-
-            }
-
-        case SET_FILTER_DATE_TO:
-            return {
-                ...state,
-                dateTo: action.payload
-            }
-
-
-        case SET_SUMMA_FROM:
-            return {
-                ...state,
-                summaFrom: action.payload,
-
-            }
-
-        case SET_SUMMA_TO:
-            return {
-                ...state,
-                summaTo: action.payload
-            }
-
-
-        case SET_ORDER_STATE_TO_FILTER:
-            return {
-                ...state,
-                filterOrderStates: updateOrderStates(state, action.payload)
-            }
-
-
         case APPLY_PANEL_FILTERS:
             return {
                 ...state,
-                data: filterPanel(state)
+                data: applyPanelFilters(state, action.payload)
             }
 
 

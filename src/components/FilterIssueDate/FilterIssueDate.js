@@ -8,8 +8,8 @@ import {setFilterDateFrom, setFilterDateTo} from "../../actions/tableDataActions
 
 export const FilterIssueDate = () => {
 
-    const valueFrom = useSelector(state => state.tableData.dateFrom)
-    const valueTo = useSelector(state => state.tableData.dateTo)
+    const valueFrom = useSelector(state => state.filter.dateFrom)
+    const valueTo = useSelector(state => state.filter.dateTo)
     const dispatch = useDispatch();
 
     const handleOnChangeFrom = (date) => {

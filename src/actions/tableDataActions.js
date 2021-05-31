@@ -25,9 +25,10 @@ export const filterTableDataByOrderNoOrPerson = (data) => {
     }
 }
 
-export const applyPanelFilters = () => {
+export const applyPanelFilters = (filterState) => {
     return {
         type: APPLY_PANEL_FILTERS,
+        payload: filterState
     }
 }
 

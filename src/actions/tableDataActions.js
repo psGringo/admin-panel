@@ -2,7 +2,11 @@ import {
     APPLY_PANEL_FILTERS,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
     GENERATE_RANDOM_TABLE_DATA,
-    SET_FILTER_DATE_FROM, SET_FILTER_DATE_TO
+    SET_FILTER_DATE_FROM,
+    SET_FILTER_DATE_TO,
+    SET_ORDER_STATE_TO_FILTER,
+    SET_SUMMA_FROM,
+    SET_SUMMA_TO
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -38,5 +42,26 @@ export const setFilterDateTo = (date) => {
     return {
         type: SET_FILTER_DATE_TO,
         payload: date
+    }
+}
+
+export const setFilterSummaFrom = (price) => {
+    return {
+        type: SET_SUMMA_FROM,
+        payload: price
+    }
+}
+
+export const setFilterSummaTo = (price) => {
+    return {
+        type: SET_SUMMA_TO,
+        payload: price
+    }
+}
+
+export const setFilterOrderState = (orderState) => {
+    return {
+        type: SET_ORDER_STATE_TO_FILTER,
+        payload: orderState
     }
 }

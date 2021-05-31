@@ -12,10 +12,10 @@ export const GenerateData = (countRecords) => {
             {
                 id: i,
                 date: randomDateValue,
-                status: getRandomFromArray(states),
+                state: getRandomFromArray(states),
                 statusIcon: <DotIcon width = "16px" height = "16px" />,
                 positions: Math.floor(Math.random() * 10),
-                summa: Math.floor(Math.random() * 10000) + ' Р',
+                summa: Math.floor(Math.random() * 10000),
                 person: getRandomFromArray(randomRussianNames)
             }
         );

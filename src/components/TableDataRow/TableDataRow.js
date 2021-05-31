@@ -9,7 +9,7 @@ export const TableDataRow = ({contents}) => {
     const {
         id,
         date,
-        status,
+        state,
         statusIcon,
         positions,
         summa,
@@ -26,8 +26,6 @@ export const TableDataRow = ({contents}) => {
                     </div>
 
                 </div>
-
-
             </div>
 
             <div className={styles.title}>
@@ -36,7 +34,7 @@ export const TableDataRow = ({contents}) => {
 
             <div className={styles.title}>
                 {statusIcon}
-                {status}
+                {state}
             </div>
 
             <div className={styles.title}>

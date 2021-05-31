@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './OrderSelect.module.css';
 import cc from "classcat";
 import {Checkbox} from "../Checkbox/Checkbox";
 import {useDispatch, useSelector} from "react-redux";
-import {ReactComponent as Arrow} from '../../static/v_arrow.svg';
 import {toggleOrderSelect} from "../../actions/orderSelectActions";
+import {setFilterOrderState} from "../../actions/tableDataActions";
 
 
 export const OrderSelect = ({values, defaultValue}) => {
@@ -12,10 +12,10 @@ export const OrderSelect = ({values, defaultValue}) => {
     const isExpanded = useSelector(state => state.orderSelect.isExpanded);
     const dispatch = useDispatch();
 
-    const options = values.map((value) => (
-        <Checkbox key={value} value={value}/>
-    ))
 
+    const handleCheckBoxClick = (value) => {
+       dispatch(setFilterOrderState(value))
+    }
 
     const handleClick = () => {
         dispatch(toggleOrderSelect());
@@ -23,15 +23,12 @@ export const OrderSelect = ({values, defaultValue}) => {
 
     return (
         <div className={styles._}>
-
             <div className={styles.selectBox} onClick={handleClick}>
-                <select className={styles.select} id="selectBox" onClick={handleClick}>
+                <select className={styles.select} id="selectBox">
                     <option>{defaultValue}</option>
-                    <Arrow className = {styles.icon}/>
                 </select>
                 <div className={styles.overSelect}></div>
             </div>
-
 
 
             <div className={cc({
@@ -39,7 +36,8 @@ export const OrderSelect = ({values, defaultValue}) => {
                 [styles.checkboxesVisible]: isExpanded,
             })}
             >
-               {options}
+
+                {values.map((value) => (<Checkbox key={value} value={value} onClick={handleCheckBoxClick}/>))}
             </div>
         </div>
     )

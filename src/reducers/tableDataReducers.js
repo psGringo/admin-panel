@@ -34,7 +34,13 @@ const updateOrderStates = (state, orderState) => {
 
 const filterPanel = (state) => {
 
-    if ((!state.dateFrom) && (!state.dateTo) && (state.filterOrderStates.length === 0))
+    if (
+        (!state.dateFrom) &&
+        (!state.dateTo) &&
+        (state.filterOrderStates.length === 0) &&
+        (!state.summaFrom) &&
+        (!state.summaTo)
+    )
         return state.initialData;
 
     let result = state.initialData.slice();
@@ -94,14 +100,14 @@ export const tableData = (state = INITIAL_STATE, action) => {
         case SET_SUMMA_FROM:
             return {
                 ...state,
-                priceFrom: action.payload,
+                summaFrom: action.payload,
 
             }
 
         case SET_SUMMA_TO:
             return {
                 ...state,
-                priceTo: action.payload
+                summaTo: action.payload
             }
 
 

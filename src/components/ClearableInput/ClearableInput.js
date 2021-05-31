@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 import styles from './ClearableInput.module.css';
 import {ReactComponent as ClearButton} from '../../static/x-large.svg';
 import cc from "classcat";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 
-export const ClearableInput = ({placeholder, firstLetter, style}) => {
+export const ClearableInput = ({placeholder, firstLetter, style, onChange}) => {
 
     const combinedStyles = cc({
         [styles._]: true,
@@ -20,8 +17,8 @@ export const ClearableInput = ({placeholder, firstLetter, style}) => {
             <input
                 className={styles.input}
                 placeholder={placeholder}
+                onChange = {onChange}
             />
-
             <ClearButton className={styles.icon}/>
         </div>
     );

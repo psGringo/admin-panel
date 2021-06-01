@@ -3,6 +3,7 @@ import classes from './TableFooter.module.css';
 import {CountChosenRecords} from "../CountChosenRecords/CountChosenRecords";
 import {ButtonChangeStatus} from "../ButtonChangeStatus/ButtonChangeStatus";
 import {ButtonDelete} from "../ButtonDelete/ButtonDelete";
+import {Paginator} from "../Paginator/Paginator";
 
 
 export const TableFooter = () => {
@@ -11,14 +12,7 @@ export const TableFooter = () => {
             <CountChosenRecords count = "5" />
             <ButtonChangeStatus />
             <ButtonDelete />
-            {/*<Paginator*/}
-            {/*    activePage={15}*/}
-            {/*    itemsCountPerPage={10}*/}
-            {/*    totalItemsCount={450}*/}
-            {/*    pageRangeDisplayed={5}*/}
-            {/*    // onChange={::this.handlePageChange}*/}
-            {/*/>*/}
-
+            <Paginator totalCountPages = "10" countVisiblePages = {3} />
         </div>
     );
 }

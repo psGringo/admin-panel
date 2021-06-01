@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SearchBox.module.css';
 import { ReactComponent as SearchButton } from '../../static/search.svg';
 import {useDispatch} from "react-redux";

@@ -4,7 +4,9 @@ import {
     SET_FILTER_DATE_FROM,
     SET_FILTER_DATE_TO,
     APPLY_PANEL_FILTERS,
-    SET_ORDER_STATE_TO_FILTER, SET_SUMMA_FROM, SET_SUMMA_TO
+    SET_ORDER_STATE_TO_FILTER,
+    SET_SUMMA_FROM,
+    SET_SUMMA_TO
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -43,10 +45,10 @@ const applyPanelFilters = (state, panelFilters) => {
         result = result.filter((item) => panelFilters.filterOrderStates.includes(item.state))
 
     if (panelFilters.summaFrom)
-        result = result.filter((item) => item.summa >= panelFilters.summaFrom)
+        result = result.filter((item) => item.summa >= parseFloat(panelFilters.summaFrom))
 
     if (panelFilters.summaTo)
-        result = result.filter((item) => item.summa <= panelFilters.summaTo)
+        result = result.filter((item) => item.summa <= parseFloat(panelFilters.summaTo))
 
     return result;
 }

@@ -8,8 +8,8 @@ const INITIAL_STATE = {
     searchTextOrderNoOrPerson: '',
     dateFrom: null,
     dateTo: null,
-    summaFrom: null,
-    summaTo: null,
+    summaFrom: '',
+    summaTo: '',
     filterOrderStates: []
 }
 
@@ -47,11 +47,14 @@ export const filter = (state = INITIAL_STATE, action) => {
 
 
         case SET_SUMMA_FROM:
+        {
+            // alert(action.payload);
             return {
                 ...state,
                 summaFrom: action.payload,
-
             }
+        }
+
 
         case SET_SUMMA_TO:
             return {

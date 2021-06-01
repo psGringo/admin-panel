@@ -4,12 +4,16 @@ import {ReactComponent as ClearButton} from '../../static/x-large.svg';
 import cc from "classcat";
 
 
-export const ClearableInput = ({placeholder, firstLetter, style, onChange}) => {
+export const ClearableInput = ({placeholder, value, firstLetter, style, onChange}) => {
 
     const combinedStyles = cc({
         [styles._]: true,
         [style]: true
     })
+
+    const handleClick = () => {
+        onChange(null)
+    }
 
     return (
         <div className={combinedStyles}>
@@ -17,9 +21,11 @@ export const ClearableInput = ({placeholder, firstLetter, style, onChange}) => {
             <input
                 className={styles.input}
                 placeholder={placeholder}
-                onChange = {onChange}
+                onChange={onChange}
+                value={value}
             />
-            <ClearButton className={styles.icon}/>
+
+            <ClearButton className={styles.icon} onClick={handleClick}/>
         </div>
     );
 };

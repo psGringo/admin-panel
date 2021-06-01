@@ -1,0 +1,12 @@
+._ {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  background-color: #459DF5;
+  border-color: black;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.625rem;
+}

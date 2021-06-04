@@ -1,16 +1,23 @@
 import React, {useEffect, useState} from "react";
 import styles from './Paginator.module.css';
 import {PaginatorItem} from "../PaginatiorItem/PaginatorItem";
+import {useDispatch, useSelector} from "react-redux";
+import {changeActiveIndex, changeLeftIndex, changeRightIndex, getPage} from "../../actions/tableDataActions";
 
 
-export const Paginator = ({totalCountPages, countVisiblePages}) => {
+export const Paginator = () => {
 
-    const [leftIndex, setLeftIndex] = useState(0);
-    const [rightIndex, setRightIndex] = useState(countVisiblePages);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const totalCountPages = useSelector(state => state.tableData.countPages);
+    const leftIndex = useSelector(state => state.tableData.leftIndex);
+    const rightIndex = useSelector(state => state.tableData.rightIndex);
+    const activeIndex = useSelector(state => state.tableData.activeIndex);
+
+    const dispatch = useDispatch();
 
     const handleClick = (e) => {
-        setActiveIndex(parseInt(e.currentTarget.innerHTML) - 1);
+        const pageIndex = parseInt(e.currentTarget.innerHTML) - 1;
+        dispatch(changeActiveIndex(pageIndex));
+        dispatch(getPage(pageIndex));
     }
 
     const getPages = (leftIndex, rightIndex, activeIndex) => {
@@ -31,16 +38,16 @@ export const Paginator = ({totalCountPages, countVisiblePages}) => {
     const next = () => {
         if (rightIndex >= totalCountPages)
             return;
-        setLeftIndex(leftIndex + 1);
-        setRightIndex(rightIndex + 1);
+        dispatch(changeRightIndex(rightIndex + 1));
+        dispatch(changeLeftIndex(leftIndex + 1));
     }
 
 
     const previous = () => {
         if (leftIndex <= 0)
             return;
-        setLeftIndex(leftIndex - 1);
-        setRightIndex(rightIndex - 1);
+        dispatch(changeRightIndex(rightIndex - 1));
+        dispatch(changeLeftIndex(leftIndex - 1));
     }
 
     return (

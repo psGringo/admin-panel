@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styles from './OrderSelect.module.css';
 import cc from "classcat";
-import {Checkbox} from "../Checkbox/Checkbox";
+import {CheckboxLabel} from "../CheckboxLabel/CheckboxLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleOrderSelect} from "../../actions/orderSelectActions";
 import {setFilterOrderState} from "../../actions/tableDataActions";
@@ -14,7 +14,7 @@ export const OrderSelect = ({values, defaultValue}) => {
 
 
     const handleCheckBoxClick = (value) => {
-       dispatch(setFilterOrderState(value))
+        dispatch(setFilterOrderState(value))
     }
 
     const handleClick = () => {
@@ -37,7 +37,7 @@ export const OrderSelect = ({values, defaultValue}) => {
             })}
             >
 
-                {values.map((value) => (<Checkbox key={value} value={value} onClick={handleCheckBoxClick}/>))}
+                {values.map((value) => (<CheckboxLabel key={value} value={value} onClick={handleCheckBoxClick}/>))}
             </div>
         </div>
     )

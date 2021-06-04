@@ -1,8 +1,10 @@
 ._ {
     display: flex;
     flex-direction: column;
-    min-height: fit-content;
+    /*justify-content: space-between;*/
+    align-items: stretch;
+    /*min-height: fit-content;*/
     min-width: fit-content;
-    height: 70vh;
+    height: 90vh;
     margin: 3rem;
 }

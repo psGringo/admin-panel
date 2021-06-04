@@ -1,17 +1,23 @@
 import {
     GENERATE_RANDOM_TABLE_DATA,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-    SET_FILTER_DATE_FROM,
-    SET_FILTER_DATE_TO,
-    APPLY_PANEL_FILTERS,
-    SET_ORDER_STATE_TO_FILTER,
-    SET_SUMMA_FROM,
-    SET_SUMMA_TO
+    APPLY_PANEL_FILTERS, GET_PAGE,
+    CHANGE_LEFT_INDEX,
+    CHANGE_RIGHT_INDEX,
+    CHANGE_ACTIVE_INDEX,
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     initialData: [],
     data: [],
+    offset: 0,
+    limit: 20,
+    page: [],
+    countPages: 0,
+    countVisiblePages: 5,
+    leftIndex: 0,
+    rightIndex: 0,
+    activeIndex: 0
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {
@@ -32,6 +38,8 @@ const applyPanelFilters = (state, panelFilters) => {
         (!panelFilters.summaTo)
     )
         return state.initialData;
+
+
 
     let result = state.initialData.slice();
 
@@ -58,25 +66,72 @@ export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case  GENERATE_RANDOM_TABLE_DATA: {
+            const countPages = Math.ceil(state.data.length / state.limit);
+            const rightIndex = (countPages < 5) ? countPages : 5;
             return {
                 ...state,
                 initialData: action.payload,
-                data: action.payload
+                data: action.payload,
+                page: state.data.slice(0, state.limit),
+                countPages: countPages,
+                rightIndex: rightIndex
             }
         }
 
+
         case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON: {
+            const filtered = filterOrderNoOrPerson(state, action.payload);
+            const countPages = Math.ceil(filtered.length / state.limit);
+            const rightIndex = (countPages < 5) ? countPages : 5;
             return {
                 ...state,
                 searchTextOrderNoOrPerson: action.payload,
-                data: filterOrderNoOrPerson(state, action.payload)
+                data: filtered,
+                page: filtered.slice(0, state.limit),
+                countPages: countPages,
+                leftIndex: 0,
+                rightIndex: rightIndex,
+                activeIndex: 0
             }
         }
 
-        case APPLY_PANEL_FILTERS:
+        case GET_PAGE:
             return {
                 ...state,
-                data: applyPanelFilters(state, action.payload)
+                page: state.data.slice(action.payload * state.limit, action.payload * state.limit + state.limit)
+            }
+
+        case APPLY_PANEL_FILTERS: {
+            const filtered = applyPanelFilters(state, action.payload);
+            const countPages = Math.ceil(filtered.length / state.limit);
+            const rightIndex = (countPages < 5) ? countPages : 5;
+            return {
+                ...state,
+                data: filtered,
+                page: filtered.slice(0, state.limit),
+                countPages: countPages,
+                leftIndex: 0,
+                rightIndex: rightIndex,
+                activeIndex: 0
+            }
+        }
+
+        case CHANGE_LEFT_INDEX:
+            return {
+                ...state,
+                leftIndex: action.payload
+            }
+
+        case CHANGE_RIGHT_INDEX:
+            return {
+                ...state,
+                rightIndex: action.payload
+            }
+
+        case CHANGE_ACTIVE_INDEX:
+            return {
+                ...state,
+                activeIndex: action.payload
             }
 
 
@@ -84,3 +139,4 @@ export const tableData = (state = INITIAL_STATE, action) => {
             return state;
     }
 }
+

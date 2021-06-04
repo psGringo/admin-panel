@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './TableDataRow.module.css';
-import {Checkbox} from "../Checkbox/Checkbox";
 import cc from "classcat";
+import {Checkbox} from "../Checkbox/Checkbox";
 
 
 export const TableDataRow = ({contents}) => {

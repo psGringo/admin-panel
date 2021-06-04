@@ -1,7 +1,7 @@
 import {
-    APPLY_PANEL_FILTERS,
+    APPLY_PANEL_FILTERS, CHANGE_ACTIVE_INDEX, CHANGE_LEFT_INDEX, CHANGE_RIGHT_INDEX,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-    GENERATE_RANDOM_TABLE_DATA,
+    GENERATE_RANDOM_TABLE_DATA, GET_PAGE,
     SET_FILTER_DATE_FROM,
     SET_FILTER_DATE_TO,
     SET_ORDER_STATE_TO_FILTER,
@@ -17,6 +17,14 @@ export const generateRandomTableData = () => {
         payload: GenerateData(200)
     }
 }
+
+export const getPage = (pageIndex) => {
+    return {
+        type: GET_PAGE,
+        payload: pageIndex
+    }
+}
+
 
 export const filterTableDataByOrderNoOrPerson = (data) => {
     return {
@@ -64,5 +72,26 @@ export const setFilterOrderState = (orderState) => {
     return {
         type: SET_ORDER_STATE_TO_FILTER,
         payload: orderState
+    }
+}
+
+export const changeLeftIndex = (value) => {
+    return {
+        type: CHANGE_LEFT_INDEX,
+        payload: value
+    }
+}
+
+export const changeRightIndex = (value) => {
+    return {
+        type: CHANGE_RIGHT_INDEX,
+        payload: value
+    }
+}
+
+export const changeActiveIndex = (value) => {
+    return {
+        type: CHANGE_ACTIVE_INDEX,
+        payload: value
     }
 }

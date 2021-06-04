@@ -1,15 +1,15 @@
 import React from "react";
 import styles from './TableHeader.module.css';
-import {Checkbox} from "../Checkbox/Checkbox";
 import {ReactComponent as V_Arrow} from "../../static/v_arrow.svg";
 import cc from "classcat";
+import {Checkbox} from "../Checkbox/Checkbox";
 
 export const TableHeader = () => {
     return (
         <div className={styles._}>
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
-                    <Checkbox/>
+                    <Checkbox />
                     <div className={styles.id}>
                         #
                     </div>

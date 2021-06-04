@@ -6,7 +6,8 @@ import {useSelector} from "react-redux";
 
 export const TableContents = () => {
 
-    let tableData = useSelector(state => state.tableData.data);
+    const tableData = useSelector(state => state.tableData.page);
+
     return (
         <div className={styles._}>
             {tableData.map((order) => <TableDataRow key={order.id} contents={order}/>)}

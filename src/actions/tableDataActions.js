@@ -6,7 +6,9 @@ import {
     SET_FILTER_DATE_TO,
     SET_ORDER_STATE_TO_FILTER,
     SET_SUMMA_FROM,
-    SET_SUMMA_TO
+    SET_SUMMA_TO,
+    TOGGLE_ROW_CHECKED,
+    TOGGLE_CHECKED_ALL_ROWS,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -22,6 +24,23 @@ export const getPage = (pageIndex) => {
     return {
         type: GET_PAGE,
         payload: pageIndex
+    }
+}
+
+export const toggleRowChecked = (id, isChecked) => {
+    return {
+        type: TOGGLE_ROW_CHECKED,
+        payload: {
+            id: id,
+            isChecked: isChecked
+        }
+    }
+}
+
+export const toggleAllRowsChecked = (isChecked) => {
+    return {
+        type: TOGGLE_CHECKED_ALL_ROWS,
+        payload: isChecked
     }
 }
 

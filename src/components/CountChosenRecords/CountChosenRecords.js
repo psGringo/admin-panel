@@ -1,8 +1,10 @@
 import React from "react";
 import styles from './CountChosenRecords.module.css';
 import cc from "classcat";
+import {useSelector} from "react-redux";
 
-export const CountChosenRecords = ({count}) => {
+export const CountChosenRecords = () => {
+    const selectedRows = useSelector(state => state.tableData.selectedRows);
     return (
         <div className={styles._}>
             <div className={styles.text}>Выбрано записей:</div>
@@ -12,7 +14,7 @@ export const CountChosenRecords = ({count}) => {
                 [styles.count]: true,
             })}
             >
-                {count}
+                {selectedRows.length}
             </div>
 
         </div>

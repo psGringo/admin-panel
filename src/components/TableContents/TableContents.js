@@ -10,7 +10,7 @@ export const TableContents = () => {
 
     return (
         <div className={styles._}>
-            {tableData.map((order) => <TableDataRow key={order.id} contents={order}/>)}
+            {tableData.map((order) => <TableDataRow key={order.id} contents={order} />)}
         </div>
     );
 }

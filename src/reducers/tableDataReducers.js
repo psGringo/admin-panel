@@ -5,19 +5,22 @@ import {
     CHANGE_LEFT_INDEX,
     CHANGE_RIGHT_INDEX,
     CHANGE_ACTIVE_INDEX,
+    TOGGLE_ROW_CHECKED,
+    TOGGLE_CHECKED_ALL_ROWS
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     initialData: [],
     data: [],
     offset: 0,
-    limit: 20,
+    limit: 5,
     page: [],
     countPages: 0,
     countVisiblePages: 5,
     leftIndex: 0,
     rightIndex: 0,
-    activeIndex: 0
+    activeIndex: 0,
+    selectedRows: []
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {
@@ -40,7 +43,6 @@ const applyPanelFilters = (state, panelFilters) => {
         return state.initialData;
 
 
-
     let result = state.initialData.slice();
 
     if (panelFilters.dateFrom)
@@ -61,6 +63,35 @@ const applyPanelFilters = (state, panelFilters) => {
     return result;
 }
 
+const handleFilter = (state, action, filterHandler) => {
+    const filtered = filterHandler(state, action.payload);
+    const countPages = Math.ceil(filtered.length / state.limit);
+    const rightIndex = (countPages < 5) ? countPages : 5;
+    return {
+        ...state,
+        data: filtered,
+        page: filtered.slice(0, state.limit),
+        countPages: countPages,
+        leftIndex: 0,
+        rightIndex: rightIndex,
+        activeIndex: 0,
+        selectedRows: []
+    }
+}
+
+const handleToggleSelectedRow = (state, action) => {
+    const id = action.payload.id;
+    const selectedRows = state.selectedRows.slice();
+    const index = selectedRows.indexOf(id);
+    index === -1 ? selectedRows.push(id) : selectedRows.splice(index, 1)
+    return selectedRows;
+}
+
+const handleCheckedAllRows = (state, isChecked) => {
+    let selectedRows = [];
+    isChecked && (selectedRows = state.page.map(item => String(item.id)))
+    return selectedRows;
+}
 
 export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -78,22 +109,9 @@ export const tableData = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON:
+            return handleFilter(state, action, filterOrderNoOrPerson)
 
-        case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON: {
-            const filtered = filterOrderNoOrPerson(state, action.payload);
-            const countPages = Math.ceil(filtered.length / state.limit);
-            const rightIndex = (countPages < 5) ? countPages : 5;
-            return {
-                ...state,
-                searchTextOrderNoOrPerson: action.payload,
-                data: filtered,
-                page: filtered.slice(0, state.limit),
-                countPages: countPages,
-                leftIndex: 0,
-                rightIndex: rightIndex,
-                activeIndex: 0
-            }
-        }
 
         case GET_PAGE:
             return {
@@ -101,19 +119,20 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 page: state.data.slice(action.payload * state.limit, action.payload * state.limit + state.limit)
             }
 
-        case APPLY_PANEL_FILTERS: {
-            const filtered = applyPanelFilters(state, action.payload);
-            const countPages = Math.ceil(filtered.length / state.limit);
-            const rightIndex = (countPages < 5) ? countPages : 5;
+        case TOGGLE_ROW_CHECKED:
             return {
                 ...state,
-                data: filtered,
-                page: filtered.slice(0, state.limit),
-                countPages: countPages,
-                leftIndex: 0,
-                rightIndex: rightIndex,
-                activeIndex: 0
+                selectedRows: handleToggleSelectedRow(state, action)
             }
+
+        case TOGGLE_CHECKED_ALL_ROWS:
+            return {
+                ...state,
+                selectedRows: handleCheckedAllRows(state, action.payload)
+            }
+
+        case APPLY_PANEL_FILTERS: {
+            return handleFilter(state, action, applyPanelFilters)
         }
 
         case CHANGE_LEFT_INDEX:

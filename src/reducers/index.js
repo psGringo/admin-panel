@@ -10,5 +10,5 @@ export const rootReducer = combineReducers({
     theme,
     orderSelect,
     orderStates,
-    tableData
+    tableData,
 })

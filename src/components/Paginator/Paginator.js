@@ -3,6 +3,7 @@ import styles from './Paginator.module.css';
 import {PaginatorItem} from "../PaginatiorItem/PaginatorItem";
 import {useDispatch, useSelector} from "react-redux";
 import {changeActiveIndex, changeLeftIndex, changeRightIndex, getPage} from "../../actions/tableDataActions";
+import cc from "classcat";
 
 
 export const Paginator = () => {
@@ -51,7 +52,11 @@ export const Paginator = () => {
     }
 
     return (
-        <div className={styles._}>
+        <div className={cc({
+            [styles._]: true,
+            [styles.invisible]: rightIndex <= 1,
+        })}
+        >
             <div className={styles.paginator}>
 
                 <div className={styles.arrow} onClick={previous}>

@@ -4,6 +4,7 @@ import {theme} from "./themeReducers";
 import {orderSelect} from "./orderSelectReducers";
 import {tableData} from "./tableDataReducers";
 import {orderStates} from "./orderStateReducers";
+import {modalWindowDelete} from "./modalWindowDeleteReducers";
 
 export const rootReducer = combineReducers({
     filter,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
     orderSelect,
     orderStates,
     tableData,
+    modalWindowDelete
 })

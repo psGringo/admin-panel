@@ -8,7 +8,7 @@ import {
     SET_SUMMA_FROM,
     SET_SUMMA_TO,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS,
+    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -41,6 +41,12 @@ export const toggleAllRowsChecked = (isChecked) => {
     return {
         type: TOGGLE_CHECKED_ALL_ROWS,
         payload: isChecked
+    }
+}
+
+export const deleteSelectedTableRows = () => {
+    return {
+        type: DELETE_SELECTED_TABLE_ROWS,
     }
 }
 

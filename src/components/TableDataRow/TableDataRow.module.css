@@ -3,6 +3,7 @@
     border-bottom-width: 0.05rem;
     border-bottom-color: #EBF0F5;
     border-bottom-style: solid;
+    cursor: pointer;
 }
 
 .title {
@@ -32,5 +33,5 @@
 }
 
 .selectedRow {
-    background-color:rgba(0, 0, 0, 0.15);
+    background-color:rgba(0, 0, 0, 0.03);
 }

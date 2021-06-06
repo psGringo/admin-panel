@@ -4,6 +4,7 @@ import {Header} from "../Header/Header";
 import {Filter} from "../Filter/Filter";
 import {Table} from "../Table/Table";
 import {TableFooter} from "../TableFooter/TableFooter";
+import {ModalWindowDelete} from "../ModalWindowDelete/ModalWindowDelete";
 
 export const MainPage = () => {
 
@@ -13,6 +14,7 @@ export const MainPage = () => {
                 <Filter />
                 <Table />
                 <TableFooter />
+                <ModalWindowDelete />
             </div>
     );
 }

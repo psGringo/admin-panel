@@ -6,14 +6,14 @@ import {
     CHANGE_RIGHT_INDEX,
     CHANGE_ACTIVE_INDEX,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS
+    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     initialData: [],
     data: [],
     offset: 0,
-    limit: 5,
+    limit: 10,
     page: [],
     countPages: 0,
     countVisiblePages: 5,
@@ -63,7 +63,7 @@ const applyPanelFilters = (state, panelFilters) => {
     return result;
 }
 
-const handleFilter = (state, action, filterHandler) => {
+const filterTableData = (state, action, filterHandler) => {
     const filtered = filterHandler(state, action.payload);
     const countPages = Math.ceil(filtered.length / state.limit);
     const rightIndex = (countPages < 5) ? countPages : 5;
@@ -79,6 +79,7 @@ const handleFilter = (state, action, filterHandler) => {
     }
 }
 
+
 const handleToggleSelectedRow = (state, action) => {
     const id = action.payload.id;
     const selectedRows = state.selectedRows.slice();
@@ -93,24 +94,44 @@ const handleCheckedAllRows = (state, isChecked) => {
     return selectedRows;
 }
 
+const calcTableData = (state, data) => {
+    const countPages = Math.ceil(state.data.length / state.limit);
+    const rightIndex = (countPages < 5) ? countPages : 5;
+    return {
+        ...state,
+        initialData: data,
+        data: data,
+        page: state.data.slice(0, state.limit),
+        countPages: countPages,
+        leftIndex: 0,
+        rightIndex: rightIndex,
+        activeIndex: 0,
+        selectedRows: []
+    }
+}
+
+const deleteTableRows = (state) => {
+
+    state.selectedRows.forEach(
+        e => {
+            let i = state.initialData.findIndex(item => item.id === Number(e));
+            if (i != -1) {
+                state.initialData.splice(i, 1);
+            }
+        }
+    );
+
+    return  calcTableData(state, state.initialData);
+}
+
 export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
-        case  GENERATE_RANDOM_TABLE_DATA: {
-            const countPages = Math.ceil(state.data.length / state.limit);
-            const rightIndex = (countPages < 5) ? countPages : 5;
-            return {
-                ...state,
-                initialData: action.payload,
-                data: action.payload,
-                page: state.data.slice(0, state.limit),
-                countPages: countPages,
-                rightIndex: rightIndex
-            }
-        }
+        case  GENERATE_RANDOM_TABLE_DATA:
+            return calcTableData(state, action.payload)
 
         case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON:
-            return handleFilter(state, action, filterOrderNoOrPerson)
+            return filterTableData(state, action, filterOrderNoOrPerson)
 
 
         case GET_PAGE:
@@ -131,8 +152,11 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 selectedRows: handleCheckedAllRows(state, action.payload)
             }
 
+        case DELETE_SELECTED_TABLE_ROWS:
+            return  deleteTableRows(state);
+
         case APPLY_PANEL_FILTERS: {
-            return handleFilter(state, action, applyPanelFilters)
+            return filterTableData(state, action, applyPanelFilters)
         }
 
         case CHANGE_LEFT_INDEX:

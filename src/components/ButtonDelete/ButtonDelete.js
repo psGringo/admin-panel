@@ -4,17 +4,27 @@ import {ReactComponent as Bin} from '../../static/bin.svg';
 import {IconButton} from "../IconButton/IconButton";
 import cc from "classcat";
 import styles_icon_button from "../IconButton/IconButton.module.css";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleModalWindowDeleteVisible} from "../../actions/modalWindowDeleteActions";
 
 export const ButtonDelete = () => {
+    const selectedRows = useSelector(state => state.tableData.selectedRows);
+    const dispatch = useDispatch();
+    const handleOnClick = () => {
+        (selectedRows.length > 0) && dispatch(toggleModalWindowDeleteVisible());
+    }
+
+
     return (
         <div>
             <IconButton
                 text="Удалить"
-                icon={<Bin />}
+                icon={<Bin/>}
                 className={cc({
                     [styles._]: true,
                     [styles_icon_button._]: true
                 })}
+                onClick={handleOnClick}
             />
         </div>
     );

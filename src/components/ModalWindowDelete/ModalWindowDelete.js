@@ -7,7 +7,7 @@ import {deleteSelectedTableRows} from "../../actions/tableDataActions";
 
 export const ModalWindowDelete = () => {
 
-    const isVisible = useSelector(state => state.modalWindowDelete.isVisible)
+    const isVisible = useSelector(state => state.modalWindowDelete.isVisible);
     const selectedRows = useSelector(state => state.tableData.selectedRows);
 
     const dispatch = useDispatch();

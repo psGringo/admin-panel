@@ -5,6 +5,7 @@ import {Filter} from "../Filter/Filter";
 import {Table} from "../Table/Table";
 import {TableFooter} from "../TableFooter/TableFooter";
 import {ModalWindowDelete} from "../ModalWindowDelete/ModalWindowDelete";
+import {OrderForm} from "../OrderForm/OrderForm";
 
 export const MainPage = () => {
 
@@ -15,6 +16,7 @@ export const MainPage = () => {
                 <Table />
                 <TableFooter />
                 <ModalWindowDelete />
+                <OrderForm />
             </div>
     );
 }

@@ -30,10 +30,7 @@ export const getPage = (pageIndex) => {
 export const toggleRowChecked = (id, isChecked) => {
     return {
         type: TOGGLE_ROW_CHECKED,
-        payload: {
-            id: id,
-            isChecked: isChecked
-        }
+        payload: id,
     }
 }
 

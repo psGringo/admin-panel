@@ -26,6 +26,10 @@ export const TableDataRow = ({contents}) => {
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const isSelected = selectedRows.includes(id.toString());
 
+    const handleClick = () => {
+        dispatch(toggleRowChecked(id.toString(), true));
+    }
+
     return (
         <div className={styles._}>
             <div className={styles.title}
@@ -49,6 +53,7 @@ export const TableDataRow = ({contents}) => {
                      [styles.selectedRow]: isSelected,
                  })}
 
+                 onClick={handleClick}
             >
                 {date.toLocaleDateString()}
             </div>

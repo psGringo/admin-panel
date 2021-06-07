@@ -82,7 +82,7 @@ const filterTableData = (state, action, filterHandler) => {
 
 
 const handleToggleSelectedRow = (state, action) => {
-    const id = action.payload.id;
+    const id = action.payload;
     const selectedRows = state.selectedRows.slice();
     const index = selectedRows.indexOf(id);
     index === -1 ? selectedRows.push(id) : selectedRows.splice(index, 1)

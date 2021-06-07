@@ -1,5 +1,7 @@
 import {
-    APPLY_PANEL_FILTERS, CHANGE_ACTIVE_INDEX, CHANGE_LEFT_INDEX, CHANGE_RIGHT_INDEX,
+    APPLY_PANEL_FILTERS, CHANGE_ACTIVE_PAGE_INDEX,
+    CHANGE_LEFT_PAGE_INDEX,
+    CHANGE_RIGHT_PAGE_INDEX,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
     GENERATE_RANDOM_TABLE_DATA, GET_PAGE,
     SET_FILTER_DATE_FROM,
@@ -8,7 +10,9 @@ import {
     SET_SUMMA_FROM,
     SET_SUMMA_TO,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS, UPDATE_INDEX_OD_SELECTED_ORDER,
+    TOGGLE_CHECKED_ALL_ROWS,
+    DELETE_SELECTED_TABLE_ROWS,
+    UPDATE_INDEX_OD_SELECTED_ORDER,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -105,23 +109,23 @@ export const setFilterOrderState = (orderState) => {
     }
 }
 
-export const changeLeftIndex = (value) => {
+export const changeLeftPageIndex = (value) => {
     return {
-        type: CHANGE_LEFT_INDEX,
+        type: CHANGE_LEFT_PAGE_INDEX,
         payload: value
     }
 }
 
-export const changeRightIndex = (value) => {
+export const changeRightPageIndex = (value) => {
     return {
-        type: CHANGE_RIGHT_INDEX,
+        type: CHANGE_RIGHT_PAGE_INDEX,
         payload: value
     }
 }
 
-export const changeActiveIndex = (value) => {
+export const changeActivePageIndex = (value) => {
     return {
-        type: CHANGE_ACTIVE_INDEX,
+        type: CHANGE_ACTIVE_PAGE_INDEX,
         payload: value
     }
 }

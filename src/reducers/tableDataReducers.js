@@ -2,9 +2,9 @@ import {
     GENERATE_RANDOM_TABLE_DATA,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
     APPLY_PANEL_FILTERS, GET_PAGE,
-    CHANGE_LEFT_INDEX,
-    CHANGE_RIGHT_INDEX,
-    CHANGE_ACTIVE_INDEX,
+    CHANGE_LEFT_PAGE_INDEX,
+    CHANGE_RIGHT_PAGE_INDEX,
+    CHANGE_ACTIVE_PAGE_INDEX,
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS, UPDATE_ORDER, UPDATE_INDEX_OD_SELECTED_ORDER
 } from "../actions/actionTypes";
@@ -189,19 +189,19 @@ export const tableData = (state = INITIAL_STATE, action) => {
         case UPDATE_ORDER:
             return handleUpdateOrder(state, action)
 
-        case CHANGE_LEFT_INDEX:
+        case CHANGE_LEFT_PAGE_INDEX:
             return {
                 ...state,
                 leftIndex: action.payload
             }
 
-        case CHANGE_RIGHT_INDEX:
+        case CHANGE_RIGHT_PAGE_INDEX:
             return {
                 ...state,
                 rightIndex: action.payload
             }
 
-        case CHANGE_ACTIVE_INDEX:
+        case CHANGE_ACTIVE_PAGE_INDEX:
             return {
                 ...state,
                 activeIndex: action.payload

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styles from './Paginator.module.css';
 import {PaginatorItem} from "../PaginatiorItem/PaginatorItem";
 import {useDispatch, useSelector} from "react-redux";
-import {changeActiveIndex, changeLeftIndex, changeRightIndex, getPage} from "../../actions/tableDataActions";
+import {changeActivePageIndex, changeLeftPageIndex, changeRightPageIndex, getPage} from "../../actions/tableDataActions";
 import cc from "classcat";
 
 
@@ -17,7 +17,7 @@ export const Paginator = () => {
 
     const handleClick = (e) => {
         const pageIndex = parseInt(e.currentTarget.innerHTML) - 1;
-        dispatch(changeActiveIndex(pageIndex));
+        dispatch(changeActivePageIndex(pageIndex));
         dispatch(getPage(pageIndex));
     }
 
@@ -39,16 +39,16 @@ export const Paginator = () => {
     const next = () => {
         if (rightIndex >= totalCountPages)
             return;
-        dispatch(changeRightIndex(rightIndex + 1));
-        dispatch(changeLeftIndex(leftIndex + 1));
+        dispatch(changeRightPageIndex(rightIndex + 1));
+        dispatch(changeLeftPageIndex(leftIndex + 1));
     }
 
 
     const previous = () => {
         if (leftIndex <= 0)
             return;
-        dispatch(changeRightIndex(rightIndex - 1));
-        dispatch(changeLeftIndex(leftIndex - 1));
+        dispatch(changeRightPageIndex(rightIndex - 1));
+        dispatch(changeLeftPageIndex(leftIndex - 1));
     }
 
     return (

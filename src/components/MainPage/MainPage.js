@@ -16,7 +16,7 @@ export const MainPage = () => {
                 <Table />
                 <TableFooter />
                 <ModalWindowDelete />
-                <OrderForm />
+                <OrderForm  />
             </div>
     );
 }

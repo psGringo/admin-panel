@@ -4,14 +4,15 @@ import {ReactComponent as Pencil} from '../../static/pencil.svg';
 import {IconButton} from "../IconButton/IconButton";
 import styles_icon_button from "../IconButton/IconButton.module.css";
 import cc from "classcat";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {toggleOrderFormVisible} from "../../actions/orderFormActions";
 
 export const ButtonChangeStatus = () => {
 
+    const selectedRows = useSelector(state => state.tableData.selectedRows)
     const dispatch = useDispatch();
     const handleClick = () => {
-        dispatch(toggleOrderFormVisible())
+        selectedRows.length === 0 ? alert('Выберите заказ') : dispatch(toggleOrderFormVisible())
     }
 
     return (

@@ -1,6 +1,5 @@
 ._ {
     display: flex;
-    flex-grow: 1;
     width: 50rem;
     justify-content: flex-end;
     align-items: center;

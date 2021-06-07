@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import styles from './OrderStatusCombobox.module.css';
 import {OrderSelect} from "../OrderSelect/OrderSelect";
-import {ClearableInput} from "../ClearableInput/ClearableInput";
 import {useSelector} from "react-redux";
-
 
 
 
@@ -21,8 +19,6 @@ export const OrderStatusCombobox = () => {
                 />
 
             </div>
-
-
         </div>
     );
 };

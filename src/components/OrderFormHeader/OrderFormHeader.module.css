@@ -1,0 +1,21 @@
+._ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #459DF5;
+    height: 3.5rem;
+    color: #EBF0F5;
+}
+
+.title {
+    color: white;
+    font-size: 1.6rem;
+    margin-left: 1rem;
+}
+
+.cross {
+    margin-right: 1rem;
+    color: #EBF0F5;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import {ReactComponent as DotIcon} from "../../static/dot.svg";
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 export const GenerateData = (countRecords) => {
     const data = [];

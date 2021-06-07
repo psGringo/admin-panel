@@ -36,7 +36,6 @@ export const OrderSelect = ({values, defaultValue}) => {
                 [styles.checkboxesVisible]: isExpanded,
             })}
             >
-
                 {values.map((value) => (<CheckboxLabel key={value} value={value} onClick={handleCheckBoxClick}/>))}
             </div>
         </div>

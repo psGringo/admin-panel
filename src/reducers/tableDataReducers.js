@@ -85,6 +85,7 @@ const handleToggleSelectedRow = (state, action) => {
     const selectedRows = state.selectedRows.slice();
     const index = selectedRows.indexOf(id);
     index === -1 ? selectedRows.push(id) : selectedRows.splice(index, 1)
+    // alert(selectedRows);
     return selectedRows;
 }
 

@@ -2,7 +2,6 @@
     position: absolute;
     right: 0px;
     top: 5%;
-    /*margin-bottom: 2rem;*/
     width: 100px;
 
     height: 90%;
@@ -13,6 +12,12 @@
     transition-property: width;
     transition-duration: 2s;
     visibility: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .title {

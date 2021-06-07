@@ -11,6 +11,7 @@ export const PaginatorItem = ({value, active, invisible, onClick}) => {
             [styles.invisible]: invisible
         })}
         onClick={onClick}
+        key = {value}
         >
 
 

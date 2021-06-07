@@ -2,11 +2,7 @@ import React from "react";
 import styles from './OrderFormPerson.module.css';
 
 
-export const OrderFormPerson = ({value}) => {
-
-    const handleOnChange = () => {
-        console.log('123')
-    }
+export const OrderFormPerson = ({value, onChange}) => {
 
     return (
         <div className={styles._}>
@@ -14,7 +10,7 @@ export const OrderFormPerson = ({value}) => {
                 ФИО
             </div>
 
-            <input type="text" className={styles.value} defaultValue={value} onChange={handleOnChange}/>
+            <input type="text" className={styles.value} defaultValue={value} onChange={onChange}/>
         </div>
     );
 }

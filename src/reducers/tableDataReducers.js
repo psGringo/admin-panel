@@ -6,7 +6,7 @@ import {
     CHANGE_RIGHT_INDEX,
     CHANGE_ACTIVE_INDEX,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS
+    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS, UPDATE_ORDER, UPDATE_INDEX_OD_SELECTED_ORDER
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -17,10 +17,11 @@ const INITIAL_STATE = {
     page: [],
     countPages: 0,
     countVisiblePages: 5,
-    leftIndex: 0,
-    rightIndex: 0,
-    activeIndex: 0,
-    selectedRows: []
+    leftPagesIndex: 0,
+    rightPagesIndex: 0,
+    activePageIndex: 0,
+    selectedRows: [],
+    indexOfSelectedOrder: -1
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {
@@ -85,7 +86,6 @@ const handleToggleSelectedRow = (state, action) => {
     const selectedRows = state.selectedRows.slice();
     const index = selectedRows.indexOf(id);
     index === -1 ? selectedRows.push(id) : selectedRows.splice(index, 1)
-    // alert(selectedRows);
     return selectedRows;
 }
 
@@ -122,7 +122,25 @@ const deleteTableRows = (state) => {
         }
     );
 
-    return  calcTableData(state, state.initialData);
+    return calcTableData(state, state.initialData);
+}
+
+const handleUpdateOrder = (state, action) => {
+
+    const id = action.payload.id;
+    const page = state.page.slice();
+    // const index = //page.findIndex(item => item.id === id);
+
+    if (state.indexOfSelectedOrder != -1) {
+        page[state.indexOfSelectedOrder].person = action.payload.person;
+        page[state.indexOfSelectedOrder].state = action.payload.state;
+        return {
+            ...state,
+            page: page
+        }
+    }
+
+    return state;
 }
 
 export const tableData = (state = INITIAL_STATE, action) => {
@@ -147,6 +165,14 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 selectedRows: handleToggleSelectedRow(state, action)
             }
 
+        case UPDATE_INDEX_OD_SELECTED_ORDER: {
+            return {
+                ...state,
+                indexOfSelectedOrder: action.payload
+            }
+        }
+
+
         case TOGGLE_CHECKED_ALL_ROWS:
             return {
                 ...state,
@@ -154,11 +180,14 @@ export const tableData = (state = INITIAL_STATE, action) => {
             }
 
         case DELETE_SELECTED_TABLE_ROWS:
-            return  deleteTableRows(state);
+            return deleteTableRows(state);
 
         case APPLY_PANEL_FILTERS: {
             return filterTableData(state, action, applyPanelFilters)
         }
+
+        case UPDATE_ORDER:
+            return handleUpdateOrder(state, action)
 
         case CHANGE_LEFT_INDEX:
             return {

@@ -6,13 +6,21 @@ import styles_icon_button from "../IconButton/IconButton.module.css";
 import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleOrderFormVisible} from "../../actions/orderFormActions";
+import {updateIndexOfSelectedOrder} from "../../actions/tableDataActions";
 
 export const ButtonChangeStatus = () => {
 
     const selectedRows = useSelector(state => state.tableData.selectedRows)
     const dispatch = useDispatch();
+    const page = useSelector(state => state.tableData.page);
+    const index = page.findIndex(item => item.id === Number(selectedRows[0]));
+    const showForm = () => {
+        // alert(index);
+        dispatch(updateIndexOfSelectedOrder(index));
+        dispatch(toggleOrderFormVisible());
+    }
     const handleClick = () => {
-        selectedRows.length === 0 ? alert('Выберите заказ') : dispatch(toggleOrderFormVisible())
+        (selectedRows.length === 0) && (index != -1) ? alert('Выберите заказ') : showForm()
     }
 
     return (

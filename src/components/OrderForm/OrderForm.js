@@ -1,51 +1,64 @@
 import React, {useState} from "react";
 import styles from './OrderForm.module.css';
 import cc from "classcat";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {OrderFormHeader} from "../OrderFormHeader/OrderFormHeader";
 import {OrderFormPerson} from "../OrderFormPerson/OrderFormPerson";
 import {OrderFormDateLockedData} from "../OrderFormLockedData/OrderFormDateLockedData";
 import {OrderFormState} from "../OrderFormOrderState/OrderFormState";
 import {OrderFormConfirmationCode} from "../OrderFormConfirmationCode/OrderFormConfirmationCode";
 import {OrderFormFooter} from "../OrderFormFooter/OrderFormFooter";
+import {updateOrder} from "../../actions/orderFormActions";
 
 
 export const OrderForm = () => {
 
     const isVisible = useSelector(state => state.orderForm.isVisible)
-    const selectedRows = useSelector(state => state.tableData.selectedRows);
     const page = useSelector(state => state.tableData.page);
-    let date;
-    let orderState;
-    let person;
-    let id;
+    const index = useSelector(state => state.tableData.indexOfSelectedOrder);
+    const dispatch = useDispatch();
 
-    if ((selectedRows.length > 0) && (page.length > 0)) {
-        const index = page.findIndex(item => item.id === Number(selectedRows[0]));
-        if (index != -1) {
-            const selectedOrder = page[index];
-            date = selectedOrder.date.toLocaleDateString();
-            orderState = selectedOrder.state;
-            person = selectedOrder.person;
-            id = selectedOrder.id
-        }
+    const handleOnSaveClick = () => {
+        dispatch(updateOrder(id, person, state))
+    }
+
+    let id;
+    let state;
+    let date;
+    let person;
+
+    if (index != -1) {
+        const selectedOrder = page[index];
+        id = selectedOrder.id
+        date = selectedOrder.date.toLocaleDateString();
+        state = selectedOrder.state;
+        person = selectedOrder.person;
+    }
+
+
+    const handleOnChangePerson = (e) => {
+        person = e.target.value;
+    }
+
+    const handleOnChangeState = (e) => {
+        state = e.target.value;
     }
 
     return (
         <div
             className={cc({
                 [styles._]: true,
-                [styles.visible]: isVisible,
+                [styles.visible]: isVisible && (index != -1),
             })}
         >
             <div className={styles.content}>
                 <OrderFormHeader orderNumber={id}/>
                 <OrderFormDateLockedData text="Дата и время" value={date}/>
-                <OrderFormPerson value={person}/>
+                <OrderFormPerson value={person} onChange={handleOnChangePerson}/>
                 <OrderFormDateLockedData text="Уровень лояльности" value="Новичок"/>
-                <OrderFormState orderState={orderState}/>
+                <OrderFormState orderState={state} onChange={handleOnChangeState}/>
                 <OrderFormConfirmationCode text="Код подтверждения" defaultValue={123}/>
-                <OrderFormFooter/>
+                <OrderFormFooter onClick={handleOnSaveClick}/>
             </div>
         </div>
     );

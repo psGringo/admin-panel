@@ -1,5 +1,6 @@
 import {
-    TOGGLE_MODAL_WINDOW_DELETE_VISIBLE, TOGGLE_ORDER_FORM_VISIBLE
+    TOGGLE_ORDER_FORM_VISIBLE
+    , UPDATE_ORDER
 } from "../actions/actionTypes";
 import {isVisible} from "bootstrap/js/src/util";
 

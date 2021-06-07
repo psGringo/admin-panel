@@ -8,7 +8,7 @@ import {
     SET_SUMMA_FROM,
     SET_SUMMA_TO,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS,
+    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS, UPDATE_INDEX_OD_SELECTED_ORDER,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -62,6 +62,14 @@ export const applyPanelFilters = (filterState) => {
     return {
         type: APPLY_PANEL_FILTERS,
         payload: filterState
+    }
+}
+
+
+export const updateIndexOfSelectedOrder = (index) => {
+    return {
+        type: UPDATE_INDEX_OD_SELECTED_ORDER,
+        payload: index
     }
 }
 

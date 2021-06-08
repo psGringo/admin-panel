@@ -1,0 +1,19 @@
+.title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 9.25rem;
+}
+
+.selectedRow {
+    background-color:rgba(0, 0, 0, 0.03);
+}
+
+.titleFirstColumn {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.id {
+    margin-left: 1rem;
+}

@@ -1,10 +1,7 @@
 import React from "react";
 import styles from './TableDataRow.module.css';
-import cc from "classcat";
-import {Checkbox} from "../Checkbox/Checkbox";
-import {toggleRowChecked} from "../../actions/tableDataActions";
-import {useDispatch, useSelector} from "react-redux";
-
+import {TableDataRowDiv} from "../TableDataRowDiv/TableDataRowDiv";
+import {TableDataRowDivCheckBox} from "../TableDataRowDivCheckBox/TableDataRowDivCheckBox";
 
 export const TableDataRow = ({contents}) => {
 
@@ -12,92 +9,41 @@ export const TableDataRow = ({contents}) => {
         id,
         date,
         state,
-        statusIcon,
+        stateIcon,
         positions,
         summa,
         person,
     } = contents;
 
-    const dispatch = useDispatch();
-    const handleOnChangeCheckBox = ({currentTarget}) => {
-        dispatch(toggleRowChecked(currentTarget.id, currentTarget.checked));
-    }
-
-    const selectedRows = useSelector(state => state.tableData.selectedRows);
-    const isSelected = selectedRows.includes(id.toString());
-
-    const handleClick = () => {
-        dispatch(toggleRowChecked(id.toString(), true));
-    }
 
     return (
         <div className={styles._}>
-            <div className={styles.title}
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.selectedRow]: isSelected,
-                 })}
 
-            >
-                <div className={styles.titleFirstColumn}>
-                    <Checkbox id={id} onChange={handleOnChangeCheckBox} checked={isSelected}/>
-                    <div className={styles.id}>
-                        {id}
-                    </div>
-                </div>
-            </div>
+            <TableDataRowDivCheckBox id={id}/>
 
-            <div className={styles.title}
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.selectedRow]: isSelected,
-                 })}
-
-                 onClick={handleClick}
-            >
+            <TableDataRowDiv id={id}>
                 {date.toLocaleDateString()}
-            </div>
+            </TableDataRowDiv>
 
-            <div className={styles.title}
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.selectedRow]: isSelected,
-                 })}
-
-            >
-                {statusIcon}
+            <TableDataRowDiv id={id}>
+                <div className={styles.icon}>
+                    {stateIcon}
+                </div>
                 {state}
-            </div>
+            </TableDataRowDiv>
 
-            <div className={styles.title}
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.selectedRow]: isSelected,
-                 })}
-
-            >
+            <TableDataRowDiv id={id}>
                 {positions}
-            </div>
+            </TableDataRowDiv>
 
-            <div className={styles.title}
-                 className={cc({
-                     [styles.title]: true,
-                     [styles.selectedRow]: isSelected,
-                 })}
-
-            >
+            <TableDataRowDiv id={id}>
                 {summa}
-            </div>
+            </TableDataRowDiv>
 
-            <div
-                className={cc({
-                    [styles.title]: true,
-                    [styles.selectedRow]: isSelected,
-                    [styles.titlePerson]: true,
-                })}
-            >
+            <TableDataRowDiv id={id} style={styles.titlePerson}>
                 {person}
-            </div>
+            </TableDataRowDiv>
+
         </div>
     );
 }

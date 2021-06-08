@@ -5,25 +5,25 @@ import {useDispatch, useSelector} from "react-redux";
 import {Checkbox} from "../Checkbox/Checkbox";
 import {toggleRowChecked} from "../../actions/tableDataActions";
 
-export const TableDataRowDivCheckBox = ({children, id, onClick, style}) => {
+export const TableDataRowDivCheckBox = ({children, id, style}) => {
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const isSelected = selectedRows.includes(id.toString());
 
     const dispatch = useDispatch();
-    const handleOnChangeCheckBox = ({currentTarget}) => {
-        dispatch(toggleRowChecked(currentTarget.id));
+    const handleToggle = () => {
+        dispatch(toggleRowChecked(String(id)));
     }
 
     return (<div className={cc({
         [styles.title]: true,
         [styles.selectedRow]: isSelected,
     })}
-                 onClick={onClick}
+                 onClick={handleToggle}
     >
         <div className={styles.titleFirstColumn}>
-            <Checkbox id={id} onChange={handleOnChangeCheckBox} checked={isSelected}/>
+            <Checkbox id={id} onChange={handleToggle} checked={isSelected}/>
 
-            <div className={styles.id}>
+            <div className={styles.id} >
                 {id}
             </div>
         </div>

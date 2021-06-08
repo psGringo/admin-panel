@@ -5,3 +5,7 @@
     background-color: #459DF5;
     margin: 0.5rem 1rem;
 }
+
+.disabled {
+    opacity: 0.5;
+}

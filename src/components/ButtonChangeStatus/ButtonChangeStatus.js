@@ -10,17 +10,21 @@ import {updateIndexOfSelectedOrder} from "../../actions/tableDataActions";
 
 export const ButtonChangeStatus = () => {
 
-    const selectedRows = useSelector(state => state.tableData.selectedRows)
+    const selectedRows = useSelector(state => state.tableData.selectedRows);
     const dispatch = useDispatch();
     const page = useSelector(state => state.tableData.page);
     const index = page.findIndex(item => item.id === Number(selectedRows[0]));
     const showForm = () => {
-        // alert(index);
         dispatch(updateIndexOfSelectedOrder(index));
         dispatch(toggleOrderFormVisible());
     }
+
+    function isDisabled () {
+        return (selectedRows.length === 0);
+    }
+
     const handleClick = () => {
-        (selectedRows.length === 0) && (index != -1) ? alert('Выберите заказ') : showForm()
+        isDisabled() ? alert('Выберите заказ') : showForm()
     }
 
     return (
@@ -30,6 +34,7 @@ export const ButtonChangeStatus = () => {
                 icon={<Pencil/>}
                 className={cc({
                     [styles._]: true,
+                    [styles.disabled]: isDisabled(),
                     [styles_icon_button._]: true
                 })}
                 onClick={handleClick}

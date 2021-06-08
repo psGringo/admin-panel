@@ -15,6 +15,10 @@ export const ButtonDelete = () => {
     }
 
 
+    const isDisabled = () => {
+       return (selectedRows.length === 0);
+    }
+
     return (
         <div>
             <IconButton
@@ -22,7 +26,8 @@ export const ButtonDelete = () => {
                 icon={<Bin/>}
                 className={cc({
                     [styles._]: true,
-                    [styles_icon_button._]: true
+                    [styles_icon_button._]: true,
+                    [styles.disabled]: isDisabled()
                 })}
                 onClick={handleOnClick}
             />

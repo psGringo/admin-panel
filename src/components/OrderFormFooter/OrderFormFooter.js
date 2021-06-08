@@ -11,7 +11,7 @@ export const OrderFormFooter = ({onClick}) => {
                 <div className={styles.title}>
                     Ошибка или индикатор загрузки
                 </div>
-                <IconButton text = "Сохранить" icon={<Confirmation />} className={styles.button} onClick={onClick} />
+                <IconButton text = "Сохранить" icon={<Confirmation className = {styles.icon}  />} className={styles.button} onClick={onClick} />
             </div>
         </div>
     );

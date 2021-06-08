@@ -38,3 +38,7 @@
     text-align: end;
 }
 
+.icon {
+    filter: invert(100%) sepia(0%) saturate(7493%) hue-rotate(50deg) brightness(100%) contrast(100%);
+}
+

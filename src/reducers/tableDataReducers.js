@@ -210,7 +210,6 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 activeIndex: action.payload
             }
 
-
         default:
             return state;
     }

@@ -14,13 +14,13 @@ export const TableHeader = () => {
     }
 
     const selectedRows = useSelector(state => state.tableData.selectedRows);
-    const limit = useSelector(state => state.tableData.limit);
+    const data = useSelector(state => state.tableData.data);
 
     return (
         <div className={styles._}>
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
-                    <Checkbox onChange={handleOnChangeCheckBox} checked = {selectedRows.length === limit}/>
+                    <Checkbox onChange={handleOnChangeCheckBox} checked = {(selectedRows.length > 0) && (selectedRows.length === data.length)}/>
                     <div className={styles.id}>
                         #
                     </div>

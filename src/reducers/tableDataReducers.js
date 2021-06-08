@@ -6,7 +6,10 @@ import {
     CHANGE_RIGHT_PAGE_INDEX,
     CHANGE_ACTIVE_PAGE_INDEX,
     TOGGLE_ROW_CHECKED,
-    TOGGLE_CHECKED_ALL_ROWS, DELETE_SELECTED_TABLE_ROWS, UPDATE_ORDER, UPDATE_INDEX_OD_SELECTED_ORDER
+    TOGGLE_CHECKED_ALL_ROWS,
+    DELETE_SELECTED_TABLE_ROWS,
+    UPDATE_ORDER,
+    UPDATE_INDEX_OD_SELECTED_ORDER
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -16,7 +19,6 @@ const INITIAL_STATE = {
     limit: 10,
     page: [],
     countPages: 0,
-    countVisiblePages: 5,
     leftPagesIndex: 0,
     rightPagesIndex: 0,
     activePageIndex: 0,
@@ -91,7 +93,7 @@ const handleToggleSelectedRow = (state, action) => {
 
 const handleCheckedAllRows = (state, isChecked) => {
     let selectedRows = [];
-    isChecked && (selectedRows = state.page.map(item => String(item.id)))
+    isChecked && (selectedRows = state.data.map(item => String(item.id)))
     return selectedRows;
 }
 
@@ -127,9 +129,7 @@ const deleteTableRows = (state) => {
 
 const handleUpdateOrder = (state, action) => {
 
-    const id = action.payload.id;
     const page = state.page.slice();
-    // const index = //page.findIndex(item => item.id === id);
 
     if (state.indexOfSelectedOrder != -1) {
         page[state.indexOfSelectedOrder].person = action.payload.person;
@@ -171,7 +171,6 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 indexOfSelectedOrder: action.payload
             }
         }
-
 
         case TOGGLE_CHECKED_ALL_ROWS:
             return {

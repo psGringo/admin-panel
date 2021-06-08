@@ -44,6 +44,7 @@
   "devDependencies": {
     "bootstrap": "^5.0.1",
     "date-fns": "^2.22.1",
+    "miragejs": "^0.1.41",
     "react-day-picker": "^7.4.10",
     "react-redux": "^7.2.4"
   }

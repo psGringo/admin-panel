@@ -1,14 +1,15 @@
 import {
+    TOGGLE_ORDER_FORM_DATA_CHANGED,
     TOGGLE_ORDER_FORM_VISIBLE
     , UPDATE_ORDER
 } from "../actions/actionTypes";
-import {isVisible} from "bootstrap/js/src/util";
 
 const INITIAL_STATE = {
     isVisible: false,
     date: Date.now(),
     person: '',
-    state: ''
+    state: '',
+    isDataChanged: false
 }
 
 
@@ -21,6 +22,12 @@ export const orderForm = (state = INITIAL_STATE, action) => {
             };
         }
 
+        case TOGGLE_ORDER_FORM_DATA_CHANGED: {
+            return {
+                ...state,
+                isDataChanged: !state.isDataChanged
+            }
+        }
 
         default:
             return state;

@@ -12,7 +12,7 @@ import {
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
-    UPDATE_INDEX_OD_SELECTED_ORDER,
+    UPDATE_INDEX_OF_SELECTED_ORDER,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -67,10 +67,10 @@ export const applyPanelFilters = (filterState) => {
 }
 
 
-export const updateIndexOfSelectedOrder = (index) => {
+export const updateIndexOfSelectedOrder = (selectedOrderId) => {
     return {
-        type: UPDATE_INDEX_OD_SELECTED_ORDER,
-        payload: index
+        type: UPDATE_INDEX_OF_SELECTED_ORDER,
+        payload: selectedOrderId
     }
 }
 

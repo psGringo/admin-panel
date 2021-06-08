@@ -21,7 +21,7 @@ export const TableDataRowDivCheckBox = ({children, id, style}) => {
                  onClick={handleToggle}
     >
         <div className={styles.titleFirstColumn}>
-            <Checkbox id={id} onChange={handleToggle} checked={isSelected}/>
+            <Checkbox id={id} checked={isSelected}/>
 
             <div className={styles.id} >
                 {id}

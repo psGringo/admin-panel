@@ -8,13 +8,13 @@ import {OrderFormDateLockedData} from "../OrderFormLockedData/OrderFormDateLocke
 import {OrderFormState} from "../OrderFormOrderState/OrderFormState";
 import {OrderFormConfirmationCode} from "../OrderFormConfirmationCode/OrderFormConfirmationCode";
 import {OrderFormFooter} from "../OrderFormFooter/OrderFormFooter";
-import {updateOrder} from "../../actions/orderFormActions";
+import {setOrderFormDataChanged, updateOrder} from "../../actions/orderFormActions";
 
 
 export const OrderForm = () => {
 
     const isVisible = useSelector(state => state.orderForm.isVisible)
-    const page = useSelector(state => state.tableData.page);
+    const data = useSelector(state => state.tableData.data);
     const index = useSelector(state => state.tableData.indexOfSelectedOrder);
     const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ export const OrderForm = () => {
     let person;
 
     if (index != -1) {
-        const selectedOrder = page[index];
+        const selectedOrder = data[index];
         id = selectedOrder.id
         date = selectedOrder.date.toLocaleDateString();
         state = selectedOrder.state;
@@ -38,10 +38,12 @@ export const OrderForm = () => {
 
     const handleOnChangePerson = (e) => {
         person = e.target.value;
+        dispatch(setOrderFormDataChanged(true));
     }
 
     const handleOnChangeState = (e) => {
         state = e.target.value;
+        dispatch(setOrderFormDataChanged(true));
     }
 
     return (

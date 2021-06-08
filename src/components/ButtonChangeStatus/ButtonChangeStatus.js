@@ -12,10 +12,9 @@ export const ButtonChangeStatus = () => {
 
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const dispatch = useDispatch();
-    const page = useSelector(state => state.tableData.page);
-    const index = page.findIndex(item => item.id === Number(selectedRows[0]));
+
     const showForm = () => {
-        dispatch(updateIndexOfSelectedOrder(index));
+        dispatch(updateIndexOfSelectedOrder(Number(selectedRows[0])));
         dispatch(toggleOrderFormVisible());
     }
 

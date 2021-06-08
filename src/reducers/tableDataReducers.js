@@ -9,7 +9,7 @@ import {
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
     UPDATE_ORDER,
-    UPDATE_INDEX_OD_SELECTED_ORDER
+    UPDATE_INDEX_OF_SELECTED_ORDER
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -104,7 +104,7 @@ const calcTableData = (state, data) => {
         ...state,
         initialData: data,
         data: data,
-        page: state.data.slice(0, state.limit),
+        page: data.slice(0, state.limit),
         countPages: countPages,
         leftIndex: 0,
         rightIndex: rightIndex,
@@ -143,6 +143,10 @@ const handleUpdateOrder = (state, action) => {
     return state;
 }
 
+const updateIndexOfSelectedOrder = (state, selectedOrderId) => {
+    return state.data.findIndex(item => item.id === selectedOrderId);
+}
+
 export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
@@ -165,10 +169,10 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 selectedRows: handleToggleSelectedRow(state, action)
             }
 
-        case UPDATE_INDEX_OD_SELECTED_ORDER: {
+        case UPDATE_INDEX_OF_SELECTED_ORDER: {
             return {
                 ...state,
-                indexOfSelectedOrder: action.payload
+                indexOfSelectedOrder: updateIndexOfSelectedOrder(state, action.payload)
             }
         }
 

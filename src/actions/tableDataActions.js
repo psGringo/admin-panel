@@ -12,7 +12,7 @@ import {
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
-    UPDATE_INDEX_OF_SELECTED_ORDER,
+    UPDATE_INDEX_OF_SELECTED_ORDER, FETCH_ALL_DATA_START, FETCH_ALL_DATA_FAIL, FETCH_ALL_DATA_SUCCESS,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
@@ -128,4 +128,30 @@ export const changeActivePageIndex = (value) => {
         type: CHANGE_ACTIVE_PAGE_INDEX,
         payload: value
     }
+}
+
+export const fetchAllData = () => (dispatch) => {
+    alert('here');
+    dispatch({type: FETCH_ALL_DATA_START});
+
+    /*
+        fetch("/api/users")
+        .then((res) => res.json())
+        .then((json) => {
+            alert(JSON.stringify(json.users))
+        })
+    * */
+
+    const url = '/api/data'
+    fetch(url)
+        .then((res) => res.json())
+        .then((json) => {
+            alert(JSON.stringify(json))
+            return dispatch({type: FETCH_ALL_DATA_SUCCESS, payload: json});
+        })
+        .catch(e => {
+                alert(e)
+                dispatch({type: FETCH_ALL_DATA_FAIL, payload: e})
+            }
+        )
 }

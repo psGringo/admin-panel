@@ -23,7 +23,9 @@ const INITIAL_STATE = {
     rightPagesIndex: 0,
     activePageIndex: 0,
     selectedRows: [],
-    indexOfSelectedOrder: -1
+    indexOfSelectedOrder: -1,
+    isFetchAllDataStarted: false,
+    isFetchAllDataFailed: false,
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {

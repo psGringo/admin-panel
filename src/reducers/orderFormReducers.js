@@ -33,7 +33,7 @@ export const orderForm = (state = INITIAL_STATE, action) => {
                 confirmationCode: action.payload,
                 isDataChanged: true
             }
-            
+
 
         default:
             return state;

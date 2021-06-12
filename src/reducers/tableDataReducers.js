@@ -9,7 +9,7 @@ import {
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
     UPDATE_ORDER,
-    UPDATE_INDEX_OF_SELECTED_ORDER
+    UPDATE_INDEX_OF_SELECTED_ORDER, GET_DATA, GET_STATES
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -26,6 +26,7 @@ const INITIAL_STATE = {
     indexOfSelectedOrder: -1,
     isFetchAllDataStarted: false,
     isFetchAllDataFailed: false,
+    states: [],
 }
 
 const filterOrderNoOrPerson = (state, searchText) => {
@@ -146,17 +147,29 @@ const handleUpdateOrder = (state, action) => {
 }
 
 const updateIndexOfSelectedOrder = (state, selectedOrderId) => {
-    return state.data.findIndex(item => item.id === selectedOrderId);
+    const index = state.data.findIndex(item => item.id === selectedOrderId)
+    return index;
 }
 
 export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
         case  GENERATE_RANDOM_TABLE_DATA:
-            return calcTableData(state, action.payload)
+            return calcTableData(state, action.payload);
+
+        case GET_DATA:
+            return calcTableData(state, action.payload);
+
+        case GET_STATES: {
+            return {
+                ...state,
+                states: action.payload
+            }
+        }
+
 
         case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON:
-            return filterTableData(state, action, filterOrderNoOrPerson)
+            return filterTableData(state, action, filterOrderNoOrPerson);
 
 
         case GET_PAGE:
@@ -211,6 +224,7 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 ...state,
                 activeIndex: action.payload
             }
+
 
         default:
             return state;

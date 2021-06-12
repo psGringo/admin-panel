@@ -1,9 +1,11 @@
 import {
-    APPLY_PANEL_FILTERS, CHANGE_ACTIVE_PAGE_INDEX,
+    APPLY_PANEL_FILTERS,
+    CHANGE_ACTIVE_PAGE_INDEX,
     CHANGE_LEFT_PAGE_INDEX,
     CHANGE_RIGHT_PAGE_INDEX,
     FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-    GENERATE_RANDOM_TABLE_DATA, GET_PAGE,
+    GENERATE_RANDOM_TABLE_DATA,
+    GET_PAGE,
     SET_FILTER_DATE_FROM,
     SET_FILTER_DATE_TO,
     SET_ORDER_STATE_TO_FILTER,
@@ -12,10 +14,16 @@ import {
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
-    UPDATE_INDEX_OF_SELECTED_ORDER, FETCH_ALL_DATA_START, FETCH_ALL_DATA_FAIL, FETCH_ALL_DATA_SUCCESS,
+    UPDATE_INDEX_OF_SELECTED_ORDER,
+    FETCH_ALL_DATA_START,
+    FETCH_ALL_DATA_FAIL,
+    FETCH_ALL_DATA_SUCCESS,
+    GET_DATA,
+    GET_STATES,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
+import {fetchWrapper} from "../api/fetchWrapper";
 
 export const generateRandomTableData = () => {
     return {
@@ -130,28 +138,35 @@ export const changeActivePageIndex = (value) => {
     }
 }
 
-export const fetchAllData = () => (dispatch) => {
-    alert('here');
-    dispatch({type: FETCH_ALL_DATA_START});
+export const setData = (value) => {
+    return {
+        type: GET_DATA,
+        payload: value
+    }
+}
 
-    /*
-        fetch("/api/users")
-        .then((res) => res.json())
-        .then((json) => {
-            alert(JSON.stringify(json.users))
-        })
-    * */
+export const setStates = (value) => {
+    return {
+        type: GET_STATES,
+        payload: value
+    }
+}
 
-    const url = '/api/data'
-    fetch(url)
-        .then((res) => res.json())
-        .then((json) => {
-            alert(JSON.stringify(json))
-            return dispatch({type: FETCH_ALL_DATA_SUCCESS, payload: json});
-        })
-        .catch(e => {
-                alert(e)
-                dispatch({type: FETCH_ALL_DATA_FAIL, payload: e})
+
+export const fetchTableData = () => (dispatch) => {
+    fetchWrapper.get('api/data')
+        .then(data => {
+                dispatch(setData(data.orders))
             }
         )
+        .catch(error => alert(error));
+}
+
+export const fetchStates = () => (dispatch) => {
+    fetchWrapper.get('api/states')
+        .then(data => {
+                dispatch(setStates(data.states))
+            }
+        )
+        .catch(error => alert(error));
 }

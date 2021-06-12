@@ -6,6 +6,7 @@ import {ReactComponent as CloseCross} from "../../static/x-medium.svg";
 
 
 export const OrderFormHeader = ({orderNumber}) => {
+
     const dispatch = useDispatch();
     const handleClose = () => {
         dispatch(toggleOrderFormVisible())

@@ -1,6 +1,6 @@
 import {
     SET_ORDER_FORM_DATA_CHANGED,
-    TOGGLE_ORDER_FORM_VISIBLE, UPDATE_CONFIRMATION_CODE,
+    TOGGLE_ORDER_FORM_VISIBLE, UPDATE_CONFIRMATION_CODE, UPDATE_FORM_DATA,
     UPDATE_ORDER
 } from "./actionTypes";
 
@@ -31,6 +31,18 @@ export const updateOrder = (id, person, state) => {
             id: id,
             person: person,
             state: state
+        }
+    }
+}
+
+export const updateFormData = (id, state, date, person) => {
+    return {
+        type: UPDATE_FORM_DATA,
+        payload: {
+            id: id,
+            state: state,
+            date: date,
+            person: person
         }
     }
 }

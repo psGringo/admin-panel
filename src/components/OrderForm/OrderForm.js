@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './OrderForm.module.css';
 import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,44 +18,40 @@ export const OrderForm = () => {
     const index = useSelector(state => state.tableData.indexOfSelectedOrder);
     const dispatch = useDispatch();
 
+    const id = useSelector(state => state.orderForm.id);
+    const date = useSelector(state => state.orderForm.date);
+    const state = useSelector(state => state.orderForm.state);
+    const person = useSelector(state => state.orderForm.person);
+
     const handleOnSaveClick = () => {
-        dispatch(updateOrder(id, person, state))
+        dispatch(updateOrder(data[index].id, data[index].person, data[index].state))
     }
-
-    let id;
-    let state;
-    let date;
-    let person;
-
-    if (index != -1) {
-        const selectedOrder = data[index];
-        id = selectedOrder.id
-        date = selectedOrder.date.toLocaleDateString();
-        state = selectedOrder.state;
-        person = selectedOrder.person;
-    }
-
 
     const handleOnChangePerson = (e) => {
-        person = e.target.value;
+        data[index].person = e.target.value;
         dispatch(setOrderFormDataChanged(true));
     }
 
     const handleOnChangeState = (e) => {
-        state = e.target.value;
+        data[index].state = e.target.value;
         dispatch(setOrderFormDataChanged(true));
+    }
+
+    const getDate = (value) => {
+        const date = new Date(value);
+        return date.toLocaleString();
     }
 
     return (
         <div
             className={cc({
                 [styles._]: true,
-                [styles.visible]: isVisible && (index != -1),
+                [styles.visible]: isVisible && index != -1,
             })}
         >
             <div className={styles.content}>
                 <OrderFormHeader orderNumber={id}/>
-                <OrderFormDateLockedData text="Дата и время" value={date}/>
+                <OrderFormDateLockedData text="Дата и время" value={getDate(date)}/>
                 <OrderFormPerson value={person} onChange={handleOnChangePerson}/>
                 <OrderFormDateLockedData text="Уровень лояльности" value="Новичок"/>
                 <OrderFormState orderState={state} onChange={handleOnChangeState}/>

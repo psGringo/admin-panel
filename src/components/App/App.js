@@ -1,14 +1,14 @@
 import './App.css';
 import React, {useEffect} from "react";
 import {MainPage} from "../MainPage/MainPage";
-import {mirageServer} from "../../mirageServer";
+import {mirageServer} from "../../api/mirageServer";
 import {useDispatch} from "react-redux";
-import {fetchAllData} from "../../actions/tableDataActions";
+import {fetchTableData} from "../../actions/tableDataActions";
 
 function App() {
     mirageServer();
     const dispatch = useDispatch();
-    dispatch(fetchAllData())
+    dispatch(fetchTableData())
 
 
     return (

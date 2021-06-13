@@ -6,6 +6,7 @@ import {tableData} from "./tableDataReducers";
 import {orderStates} from "./orderStateReducers";
 import {modalWindowDelete} from "./modalWindowDeleteReducers";
 import {orderForm} from "./orderFormReducers";
+import {loadIndication} from "./loadIndicationReducers";
 
 export const rootReducer = combineReducers({
     filter,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     orderStates,
     tableData,
     modalWindowDelete,
-    orderForm
+    orderForm,
+    loadIndication
 })

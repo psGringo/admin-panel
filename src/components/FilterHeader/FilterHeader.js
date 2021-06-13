@@ -6,14 +6,14 @@ import {LoadIndication} from "../LoadIndication/LoadIndication";
 import {useSelector} from "react-redux";
 
 export const FilterHeader = () => {
-    const isStartLoading = useSelector(state => state.tableData.isFetchAllDataStarted);
+    const isVisibleLoadIndication = useSelector(state => state.loadIndication.isVisible)
     return (
         <div className={styles._}>
             <div className={styles.searchBoxAndFiltersToggleButton}>
                 <SearchBox/>
                 <ButtonFiltersToggle/>
             </div>
-            {isStartLoading ? <LoadIndication/> : null}
+            {isVisibleLoadIndication ? <LoadIndication/> : null}
         </div>
     );
 }

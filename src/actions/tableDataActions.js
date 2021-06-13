@@ -24,6 +24,7 @@ import {
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
 import {fetchWrapper} from "../api/fetchWrapper";
+import {toggleLoadIndicationVisible} from "./loadIndicationActions";
 
 export const generateRandomTableData = () => {
     return {
@@ -154,12 +155,18 @@ export const setStates = (value) => {
 
 
 export const fetchTableData = () => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
+
     fetchWrapper.get('api/data')
         .then(data => {
-                dispatch(setData(data.orders))
+                dispatch(setData(data.orders));
+                dispatch(toggleLoadIndicationVisible());
             }
         )
-        .catch(error => alert(error));
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
 }
 
 export const fetchStates = () => (dispatch) => {

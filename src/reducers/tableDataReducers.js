@@ -24,8 +24,6 @@ const INITIAL_STATE = {
     activePageIndex: 0,
     selectedRows: [],
     indexOfSelectedOrder: -1,
-    isFetchAllDataStarted: false,
-    isFetchAllDataFailed: false,
     states: [],
 }
 
@@ -120,7 +118,7 @@ const deleteTableRows = (state) => {
 
     state.selectedRows.forEach(
         e => {
-            let i = state.initialData.findIndex(item => item.id === Number(e));
+            let i = state.initialData.findIndex(item => item.id === e);
             if (i != -1) {
                 state.initialData.splice(i, 1);
             }

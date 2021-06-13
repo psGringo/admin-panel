@@ -1,13 +1,9 @@
-import {ReactComponent as DotIcon} from "../../static/dot.svg";
-import {ReactComponent as Checkmark} from "../../static/checkmark.svg";
-import {ReactComponent as Abandon} from "../../static/abort.svg";
 import React from "react";
-import {useSelector} from "react-redux";
 import styles from './DataGenerator.module.css';
+import {states} from "../../api/states";
 
 export const GenerateData = (countRecords) => {
     const data = [];
-    const states = useSelector(state => state.orderStates);
 
     for (let i = 0; i < countRecords; i++) {
         const randomDateValue = randomDate(new Date(2012, 0, 1), new Date());
@@ -17,31 +13,17 @@ export const GenerateData = (countRecords) => {
                 id: i,
                 date: randomDateValue,
                 state: state,
-                stateIcon: getStateIcon(state, states),
                 positions: Math.floor(Math.random() * 10),
                 summa: Math.floor(Math.random() * 10000),
                 person: getRandomFromArray(randomRussianNames)
             }
         );
     }
+
     return data;
 }
 
-const getStateIcon = (state, states) => {
 
-    switch (state) {
-        case states[0]:
-            return <DotIcon className={styles.orange}/>
-        case states[1]:
-            return <DotIcon className={styles.blue}/>
-        case states[3]:
-            return <Abandon/>
-        case states[4]:
-            return <Checkmark className={styles.green}/>
-        default:
-            return <DotIcon />
-    }
-}
 
 const randomDate = (start, end) => {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));

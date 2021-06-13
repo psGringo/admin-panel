@@ -1,61 +1,87 @@
 import {belongsTo, createServer, Factory, hasMany, Model} from "miragejs"
-import styles from "../components/DataGenerator/DataGenerator.module.css";
 import React from "react";
-import {ReactComponent as DotIcon} from "../static/dot.svg";
-import {ReactComponent as Checkmark} from "../static/checkmark.svg";
-import {ReactComponent as Abandon} from "../static/abort.svg";
+import {GenerateData} from "../components/DataGenerator/DataGenereator";
+import {states} from "./states";
 
 
 export const mirageServer = () => {
 
+    const initialData = GenerateData(200);
+
+    const stringifyResponse = (field, data) => {
+        return JSON.stringify({
+            [`${field}`]: data
+        })
+    }
+
+    const getFilterSource = (filtered) => {
+        return filtered ? filtered : initialData;
+    }
+
     let server = createServer({
 
-            models: {
-                order: Model.extend({
-                    orderData: hasMany(),
-                }),
-
-                orderData: Model.extend({
-                    order: belongsTo(),
-                }),
-
-                state: Model
-            },
-
-
-            factories: {
-                order: Factory.extend({
-                    id(i) {
-                        return `${i}`
-                    },
-                    date() {
-                        return randomDate(new Date(2012, 0, 1), new Date())
-                    },
-                    state() {
-                        return getRandomFromArray(states)
-                    },
-                    positions() {
-                        return Math.floor(Math.random() * 10)
-                    },
-                    summa() {
-                        return Math.floor(Math.random() * 10000)
-                    },
-                    person() {
-                        return getRandomFromArray(randomRussianNames)
-                    }
-                }),
-            },
-
-            seeds(server) {
-                server.createList("order", 200);
-                server.create("state", {states});
-            },
-
-
             routes() {
-                this.get("/api/data", (schema) => {
-                    return schema.orders.all()
+                this.get("/api/data", () => {
+                    return stringifyResponse('orders', initialData);
                 });
+
+                this.post("/api/delete", (schema, request) => {
+                    let attrs = JSON.parse(request.requestBody);
+
+                    attrs.selectedRows.forEach(
+                        e => {
+                            let i = initialData.findIndex(item => item.id === Number(e));
+                            if (i != -1) {
+                                initialData.splice(i, 1);
+                            }
+                        }
+                    );
+
+                    return stringifyResponse('orders', initialData)
+                })
+
+
+                this.post("/api/filterNoOrPerson", (schema, request) => {
+                    let attrs = JSON.parse(request.requestBody);
+                    if (attrs.value) {
+                        const filtered = initialData.filter((item) => (item.person.startsWith(attrs.value) || (item.id.toString().startsWith(attrs.value))));
+                        return stringifyResponse('orders', filtered)
+                    }
+                    return stringifyResponse('orders', initialData)
+                })
+
+
+                this.post("/api/panelFilters", (schema, request) => {
+                    let attrs = JSON.parse(request.requestBody);
+                    if (
+                        (!attrs.dateFrom) &&
+                        (!attrs.dateTo) &&
+                        (attrs.filterOrderStates.length === 0) &&
+                        (!attrs.summaFrom) &&
+                        (!attrs.summaTo)
+                    )
+                        return stringifyResponse('orders', initialData);
+
+                    let filtered;
+
+                    if (attrs.dateFrom)
+                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - attrs.dateFrom.getTime()) >= 0));
+
+                    if (attrs.dateTo)
+                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - attrs.dateTo.getTime()) <= 0));
+                    
+                    if (attrs.filterOrderStates.length != 0)
+                        filtered = getFilterSource(filtered).filter((item) => attrs.filterOrderStates.includes(item.state))
+
+                    if (attrs.summaFrom)
+                        filtered = getFilterSource(filtered).filter((item) => item.summa >= parseFloat(attrs.summaFrom))
+
+                    if (attrs.summaTo)
+                        filtered = getFilterSource(filtered).filter((item) => item.summa <= parseFloat(attrs.summaTo))
+
+                    return stringifyResponse('orders', filtered)
+                })
+
 
                 this.get("/api/states", (schema) => {
                     return JSON.stringify({
@@ -70,17 +96,6 @@ export const mirageServer = () => {
     return server;
 }
 
-
-
-const states = [
-    'Новый',
-    'Рассчет',
-    'Подтвержден',
-    'Отложен',
-    'Выполнен',
-    'Отменен',
-]
-
 const getRandomFromArray = (a) => {
     return a[Math.floor(Math.random() * a.length)]
 }
@@ -89,105 +104,3 @@ const randomDate = (start, end) => {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-const randomRussianNames = [
-    'Абрамов Павел Артёмович',
-    'Авдеева Елена Александровна',
-    'Александрова Ксения Алексеевна',
-    'Антонов Андрей Артурович',
-    'Антонова Мария Алексеевна',
-    'Баранова Ульяна Алексеевна',
-    'Белоусова Алина Марковна',
-    'Бирюков Даниил Артурович',
-    'Богданова Арина Романовна',
-    'Бондарева Алёна Александровна',
-    'Бочарова Вера Андреевна',
-    'Булатов Даниил Евгеньевич',
-    'Бурова Дарья Артёмовна',
-    'Васильев Фёдор Иванович',
-    'Виноградов Ярослав Маркович',
-    'Воробьева Елизавета Кирилловна',
-    'Герасимова Виктория Константиновна',
-    'Гладков Вадим Владимирович',
-    'Горюнова Ева Алексеевна',
-    'Григорьев Андрей Тимофеевич',
-    'Громов Николай Михайлович',
-    'Губанова Валентина Матвеевна',
-    'Данилов Иван Антонович',
-    'Егоров Николай Миронович',
-    'Егорова Полина Никитична',
-    'Жукова Вероника Тимофеевна',
-    'Захаров Владимир Миронович',
-    'Зеленина Александра Дмитриевна',
-    'Зиновьева Полина Макаровна',
-    'Злобин Глеб Матвеевич',
-    'Иванов Леон Ярославович',
-    'Иванова Ника Артёмовна',
-    'Ильина София Владимировна',
-    'Калинин Марк Миронович',
-    'Капустин Евгений Фёдорович',
-    'Кириллов Андрей Никитич',
-    'Князева София Павловна',
-    'Колесников Артём Максимович',
-    'Комаров Игорь Арсеньевич',
-    'Кондрашов Артём Георгиевич',
-    'Копылова Яна Ивановна',
-    'Корнеев Александр Борисович',
-    'Косарев Всеволод Максимович',
-    'Крылова Валерия Степановна',
-    'Кудрявцев Георгий Владимирович',
-    'Кузнецов Дмитрий Миронович',
-    'Кузнецов Матвей Глебович',
-    'Кукушкина Дарья Михайловна',
-    'Лебедева Анастасия Андреевна',
-    'Макарова Милена Степановна',
-    'Макеев Григорий Фёдорович',
-    'Марков Лев Филиппович',
-    'Мартынов Тимофей Даниилович',
-    'Морозов Лев Артёмович',
-    'Морозова Василиса Владимировна',
-    'Москвина Анна Кирилловна',
-    'Мухин Николай Вячеславович',
-    'Наумов Никита Ильич',
-    'Никитин Степан Маркович',
-    'Николаев Дмитрий Егорович',
-    'Николаева Елена Матвеевна',
-    'Никулина Варвара Романовна',
-    'Новиков Руслан Владимирович',
-    'Новиков Роман Львович',
-    'Панова Ева Платоновна',
-    'Парфенова Полина Фёдоровна',
-    'Петухов Максим Артёмович',
-    'Пименова Елизавета Степановна',
-    'Плотникова Валерия Максимовна',
-    'Попова Таисия Константиновна',
-    'Попова Алина Денисовна',
-    'Потапова Мария Александровна',
-    'Раков Роман Романович',
-    'Родионова Ангелина Георгиевна',
-    'Романова Надежда Михайловна',
-    'Семенова Виктория Демидовна',
-    'Семенова Мария Семёновна',
-    'Сергеев Сергей Алексеевич',
-    'Сидорова Дарья Кирилловна',
-    'Симонова Анастасия Ильинична',
-    'Смирнов Николай Максимович',
-    'Смирнов Евгений Сергеевич',
-    'Смирнова Александра Данииловна',
-    'Смирнова Анна Тимофеевна',
-    'Сотников Максим Григорьевич',
-    'Спиридонова Анна Макаровна',
-    'Сурков Тимофей Владимирович',
-    'Суханова Варвара Владимировна',
-    'Тарасов Фёдор Яковлевич',
-    'Трифонов Никита Львович',
-    'Федорова Алёна Матвеевна',
-    'Федорова Алиса Глебовна',
-    'Фетисов Антон Кириллович',
-    'Филиппов Георгий Максимович',
-    'Фролов Степан Павлович',
-    'Фролова Екатерина Михайловна',
-    'Шаповалов Глеб Никитич',
-    'Шевцов Мирон Артёмович',
-    'Щербакова Алёна Леонидовна',
-    'Яковлев Роман Дмитриевич',
-]

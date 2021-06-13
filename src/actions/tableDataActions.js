@@ -54,28 +54,6 @@ export const toggleAllRowsChecked = (isChecked) => {
     }
 }
 
-export const deleteSelectedTableRows = () => {
-    return {
-        type: DELETE_SELECTED_TABLE_ROWS,
-    }
-}
-
-
-export const filterTableDataByOrderNoOrPerson = (data) => {
-    return {
-        type: FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-        payload: data
-    }
-}
-
-export const applyPanelFilters = (filterState) => {
-    return {
-        type: APPLY_PANEL_FILTERS,
-        payload: filterState
-    }
-}
-
-
 export const updateIndexOfSelectedOrder = (selectedOrderId) => {
     return {
         type: UPDATE_INDEX_OF_SELECTED_ORDER,
@@ -176,4 +154,50 @@ export const fetchStates = () => (dispatch) => {
             }
         )
         .catch(error => alert(error));
+}
+
+export const filterTableDataByOrderNoOrPerson = (value) => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
+
+    fetchWrapper.post('api/filterNoOrPerson/', {value})
+        .then(data => {
+                dispatch(setData(data.orders));
+                dispatch(toggleLoadIndicationVisible());
+            }
+        )
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
+}
+
+
+export const filterTableFromPanel = (value) => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
+
+    fetchWrapper.post('api/panelFilters', value)
+        .then(data => {
+                dispatch(setData(data.orders));
+                dispatch(toggleLoadIndicationVisible());
+            }
+        )
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
+}
+
+export const deleteSelectedTableRows = (value) => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
+
+    fetchWrapper.post('api/delete', value)
+        .then(data => {
+                dispatch(setData(data.orders));
+                dispatch(toggleLoadIndicationVisible());
+            }
+        )
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
 }

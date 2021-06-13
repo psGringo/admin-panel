@@ -17,7 +17,7 @@ export const ModalWindowDelete = () => {
     }
 
     const handleDelete = () => {
-        dispatch(deleteSelectedTableRows())
+        dispatch(deleteSelectedTableRows( ({selectedRows})));
         dispatch(toggleModalWindowDeleteVisible());
     }
 

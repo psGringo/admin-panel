@@ -1,13 +1,10 @@
 import {
-    GENERATE_RANDOM_TABLE_DATA,
-    FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-    APPLY_PANEL_FILTERS, GET_PAGE,
+    GET_PAGE,
     CHANGE_LEFT_PAGE_INDEX,
     CHANGE_RIGHT_PAGE_INDEX,
     CHANGE_ACTIVE_PAGE_INDEX,
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS,
-    DELETE_SELECTED_TABLE_ROWS,
     UPDATE_ORDER,
     UPDATE_INDEX_OF_SELECTED_ORDER, GET_DATA, GET_STATES
 } from "../actions/actionTypes";
@@ -27,63 +24,6 @@ const INITIAL_STATE = {
     states: [],
 }
 
-const filterOrderNoOrPerson = (state, searchText) => {
-
-    if (searchText)
-        return state.data.filter((item) => (item.person.startsWith(searchText) || (item.id.toString().startsWith(searchText))));
-
-    return state.initialData;
-}
-
-const applyPanelFilters = (state, panelFilters) => {
-
-    if (
-        (!panelFilters.dateFrom) &&
-        (!panelFilters.dateTo) &&
-        (panelFilters.filterOrderStates.length === 0) &&
-        (!panelFilters.summaFrom) &&
-        (!panelFilters.summaTo)
-    )
-        return state.initialData;
-
-
-    let result = state.initialData.slice();
-
-    if (panelFilters.dateFrom)
-        result = result.filter((item) => (((item.date).getTime() - panelFilters.dateFrom.getTime()) >= 0));
-
-    if (state.dateTo)
-        result = result.filter((item) => (((item.date).getTime() - panelFilters.dateTo.getTime()) <= 0));
-
-    if (panelFilters.filterOrderStates.length != 0)
-        result = result.filter((item) => panelFilters.filterOrderStates.includes(item.state))
-
-    if (panelFilters.summaFrom)
-        result = result.filter((item) => item.summa >= parseFloat(panelFilters.summaFrom))
-
-    if (panelFilters.summaTo)
-        result = result.filter((item) => item.summa <= parseFloat(panelFilters.summaTo))
-
-    return result;
-}
-
-const filterTableData = (state, action, filterHandler) => {
-    const filtered = filterHandler(state, action.payload);
-    const countPages = Math.ceil(filtered.length / state.limit);
-    const rightIndex = (countPages < 5) ? countPages : 5;
-    return {
-        ...state,
-        data: filtered,
-        page: filtered.slice(0, state.limit),
-        countPages: countPages,
-        leftIndex: 0,
-        rightIndex: rightIndex,
-        activeIndex: 0,
-        selectedRows: []
-    }
-}
-
-
 const handleToggleSelectedRow = (state, action) => {
     const id = action.payload;
     const selectedRows = state.selectedRows.slice();
@@ -99,7 +39,7 @@ const handleCheckedAllRows = (state, isChecked) => {
 }
 
 const calcTableData = (state, data) => {
-    const countPages = Math.ceil(state.data.length / state.limit);
+    const countPages = Math.ceil(data.length / state.limit);
     const rightIndex = (countPages < 5) ? countPages : 5;
     return {
         ...state,
@@ -152,9 +92,6 @@ const updateIndexOfSelectedOrder = (state, selectedOrderId) => {
 export const tableData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
 
-        case  GENERATE_RANDOM_TABLE_DATA:
-            return calcTableData(state, action.payload);
-
         case GET_DATA:
             return calcTableData(state, action.payload);
 
@@ -164,10 +101,6 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 states: action.payload
             }
         }
-
-
-        case FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON:
-            return filterTableData(state, action, filterOrderNoOrPerson);
 
 
         case GET_PAGE:
@@ -194,13 +127,6 @@ export const tableData = (state = INITIAL_STATE, action) => {
                 ...state,
                 selectedRows: handleCheckedAllRows(state, action.payload)
             }
-
-        case DELETE_SELECTED_TABLE_ROWS:
-            return deleteTableRows(state);
-
-        case APPLY_PANEL_FILTERS: {
-            return filterTableData(state, action, applyPanelFilters)
-        }
 
         case UPDATE_ORDER:
             return handleUpdateOrder(state, action)

@@ -8,7 +8,8 @@ import {filterTableDataByOrderNoOrPerson} from "../../actions/tableDataActions";
 export const SearchBox = () => {
     const dispatch = useDispatch();
     const onChange = (e) => {
-        dispatch(filterTableDataByOrderNoOrPerson(e.target.value));
+        const value = {value: e.target.value};
+        dispatch(filterTableDataByOrderNoOrPerson(value));
     }
 
     return (

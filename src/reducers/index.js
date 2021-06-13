@@ -7,13 +7,15 @@ import {orderStates} from "./orderStateReducers";
 import {modalWindowDelete} from "./modalWindowDeleteReducers";
 import {orderForm} from "./orderFormReducers";
 import {loadIndication} from "./loadIndicationReducers";
+import {tableDataSortDirections} from "./tableDataSortDirection";
 
 export const rootReducer = combineReducers({
+    tableData,
+    tableDataSortDirections,
     filter,
     theme,
     orderSelect,
     orderStates,
-    tableData,
     modalWindowDelete,
     orderForm,
     loadIndication

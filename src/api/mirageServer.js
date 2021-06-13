@@ -36,9 +36,7 @@ export const mirageServer = () => {
                 // --- sort
 
                 this.post("/api/sort", (schema, request) => {
-
                     let attrs = JSON.parse(request.requestBody);
-                    alert(JSON.stringify(attrs));
                     const comparer = getComparer(attrs.sortParam, attrs.sortDirection);
                     initialData.sort(comparer)
                     return stringifyResponse('orders', initialData)

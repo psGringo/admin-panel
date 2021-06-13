@@ -10,7 +10,6 @@ import {
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
-    initialData: [],
     data: [],
     offset: 0,
     limit: 10,
@@ -43,7 +42,6 @@ const calcTableData = (state, data) => {
     const rightIndex = (countPages < 5) ? countPages : 5;
     return {
         ...state,
-        initialData: data,
         data: data,
         page: data.slice(0, state.limit),
         countPages: countPages,
@@ -54,19 +52,6 @@ const calcTableData = (state, data) => {
     }
 }
 
-const deleteTableRows = (state) => {
-
-    state.selectedRows.forEach(
-        e => {
-            let i = state.initialData.findIndex(item => item.id === e);
-            if (i != -1) {
-                state.initialData.splice(i, 1);
-            }
-        }
-    );
-
-    return calcTableData(state, state.initialData);
-}
 
 const handleUpdateOrder = (state, action) => {
 

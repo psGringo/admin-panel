@@ -15,11 +15,12 @@ export const TableHeader = () => {
 
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const data = useSelector(state => state.tableData.data);
+    const sortDirections = useSelector(state => state.tableDataSortDirections)
 
-    const handleSortClick = (fieldName) => {
+    const handleSortClick = (sortParam) => {
         dispatch(sortTableRows({
-            sortParam: fieldName,
-            sortDirection: 'asc'
+            sortParam: sortParam,
+            sortDirection: sortDirections[`${sortParam}`]
         }))
     }
 

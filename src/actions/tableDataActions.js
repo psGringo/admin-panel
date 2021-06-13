@@ -1,10 +1,7 @@
 import {
-    APPLY_PANEL_FILTERS,
     CHANGE_ACTIVE_PAGE_INDEX,
     CHANGE_LEFT_PAGE_INDEX,
     CHANGE_RIGHT_PAGE_INDEX,
-    FILTER_TABLE_DATA_BY_ORDER_NO_OR_PERSON,
-    GENERATE_RANDOM_TABLE_DATA,
     GET_PAGE,
     SET_FILTER_DATE_FROM,
     SET_FILTER_DATE_TO,
@@ -16,19 +13,13 @@ import {
     DELETE_SELECTED_TABLE_ROWS,
     UPDATE_INDEX_OF_SELECTED_ORDER,
     GET_DATA,
-    GET_STATES,
+    GET_STATES, TOGGLE_TABLE_DATA_SORT,
 } from "./actionTypes";
 
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
 import {fetchWrapper} from "../api/fetchWrapper";
 import {toggleLoadIndicationVisible} from "./loadIndicationActions";
-
-export const generateRandomTableData = () => {
-    return {
-        type: GENERATE_RANDOM_TABLE_DATA,
-        payload: GenerateData(200)
-    }
-}
+import {toggleTableDataSortDirections} from "./tableDataSortDirectionsActions";
 
 export const getPage = (pageIndex) => {
     return {
@@ -168,64 +159,18 @@ const updateTableData = (value, dispatch, url) => {
 }
 
 export const filterTableDataByOrderNoOrPerson = (value) => (dispatch) => {
-    dispatch(toggleLoadIndicationVisible());
-
-    fetchWrapper.post('api/filterNoOrPerson/', {value})
-        .then(data => {
-                dispatch(setData(data.orders));
-                dispatch(toggleLoadIndicationVisible());
-            }
-        )
-        .catch(error => {
-            dispatch(toggleLoadIndicationVisible());
-            alert(error)
-        });
+    updateTableData(value, dispatch, 'api/filterNoOrPerson/');
 }
 
-
 export const filterTableFromPanel = (value) => (dispatch) => {
-    dispatch(toggleLoadIndicationVisible());
-
-    fetchWrapper.post('api/panelFilters', value)
-        .then(data => {
-                dispatch(setData(data.orders));
-                dispatch(toggleLoadIndicationVisible());
-            }
-        )
-        .catch(error => {
-            dispatch(toggleLoadIndicationVisible());
-            alert(error)
-        });
+    updateTableData(value, dispatch, 'api/panelFilters/');
 }
 
 export const deleteSelectedTableRows = (value) => (dispatch) => {
-    dispatch(toggleLoadIndicationVisible());
-
-    fetchWrapper.post('api/delete', value)
-        .then(data => {
-                dispatch(setData(data.orders));
-                dispatch(toggleLoadIndicationVisible());
-            }
-        )
-        .catch(error => {
-            dispatch(toggleLoadIndicationVisible());
-            alert(error)
-        });
+    updateTableData(value, dispatch, 'api/delete/');
 }
 
-
 export const sortTableRows = (value) => (dispatch) => {
-     dispatch(updateTableData(value, dispatch, 'api/sort'));
-    // dispatch(toggleLoadIndicationVisible());
-    //
-    // fetchWrapper.post('api/sort', value)
-    //     .then(data => {
-    //             dispatch(setData(data.orders));
-    //             dispatch(toggleLoadIndicationVisible());
-    //         }
-    //     )
-    //     .catch(error => {
-    //         dispatch(toggleLoadIndicationVisible());
-    //         alert(error)
-    //     });
+    updateTableData(value, dispatch, 'api/sort');
+    dispatch(toggleTableDataSortDirections(value.sortParam));
 }

@@ -4,7 +4,7 @@ import {ReactComponent as V_Arrow} from "../../static/v_arrow.svg";
 import cc from "classcat";
 import {Checkbox} from "../Checkbox/Checkbox";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleAllRowsChecked, toggleRowChecked} from "../../actions/tableDataActions";
+import {sortTableRows, toggleAllRowsChecked, toggleRowChecked} from "../../actions/tableDataActions";
 
 export const TableHeader = () => {
 
@@ -16,33 +16,61 @@ export const TableHeader = () => {
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const data = useSelector(state => state.tableData.data);
 
+    const handleSortClick = (fieldName) => {
+        dispatch(sortTableRows({
+            sortParam: fieldName,
+            sortDirection: 'asc'
+        }))
+    }
+
+    const handleSortPositionsClick = () => {
+        handleSortClick('positions');
+    }
+
+    const handleSortDatesClick = () => {
+        handleSortClick('date');
+    }
+
+    const handleSortStatesClick = () => {
+        handleSortClick('state');
+    }
+
+    const handleSortSummaClick = () => {
+        handleSortClick('summa');
+    }
+
+    const handleSortPersonClick = () => {
+        handleSortClick('person');
+    }
+
     return (
         <div className={styles._}>
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
-                    <Checkbox onChange={handleOnChangeCheckBox} checked = {(selectedRows.length > 0) && (selectedRows.length === data.length)}/>
+                    <Checkbox onChange={handleOnChangeCheckBox}
+                              checked={(selectedRows.length > 0) && (selectedRows.length === data.length)}/>
                     <div className={styles.id}>
                         #
                     </div>
                 </div>
             </div>
 
-            <div className={styles.title}>
+            <div className={styles.title} onClick={handleSortDatesClick}>
                 Дата
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title}>
+            <div className={styles.title} onClick={handleSortStatesClick}>
                 Статус
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title}>
+            <div className={styles.title} onClick={handleSortPositionsClick}>
                 Позиций
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title}>
+            <div className={styles.title} onClick={handleSortSummaClick}>
                 Сумма
                 <V_Arrow className={styles.icon}/>
             </div>
@@ -50,7 +78,9 @@ export const TableHeader = () => {
             <div className={cc({
                 [styles.title]: true,
                 [styles.titlePerson]: true,
-            })}>
+            })}
+                 onClick={handleSortPersonClick}
+            >
                 ФИО покупателя
                 <V_Arrow className={styles.icon}/>
             </div>

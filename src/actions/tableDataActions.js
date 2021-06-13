@@ -15,9 +15,6 @@ import {
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
     UPDATE_INDEX_OF_SELECTED_ORDER,
-    FETCH_ALL_DATA_START,
-    FETCH_ALL_DATA_FAIL,
-    FETCH_ALL_DATA_SUCCESS,
     GET_DATA,
     GET_STATES,
 } from "./actionTypes";
@@ -156,6 +153,20 @@ export const fetchStates = () => (dispatch) => {
         .catch(error => alert(error));
 }
 
+const updateTableData = (value, dispatch, url) => {
+    dispatch(toggleLoadIndicationVisible());
+    fetchWrapper.post(url, value)
+        .then(data => {
+                dispatch(setData(data.orders));
+                dispatch(toggleLoadIndicationVisible());
+            }
+        )
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
+}
+
 export const filterTableDataByOrderNoOrPerson = (value) => (dispatch) => {
     dispatch(toggleLoadIndicationVisible());
 
@@ -200,4 +211,21 @@ export const deleteSelectedTableRows = (value) => (dispatch) => {
             dispatch(toggleLoadIndicationVisible());
             alert(error)
         });
+}
+
+
+export const sortTableRows = (value) => (dispatch) => {
+     dispatch(updateTableData(value, dispatch, 'api/sort'));
+    // dispatch(toggleLoadIndicationVisible());
+    //
+    // fetchWrapper.post('api/sort', value)
+    //     .then(data => {
+    //             dispatch(setData(data.orders));
+    //             dispatch(toggleLoadIndicationVisible());
+    //         }
+    //     )
+    //     .catch(error => {
+    //         dispatch(toggleLoadIndicationVisible());
+    //         alert(error)
+    //     });
 }

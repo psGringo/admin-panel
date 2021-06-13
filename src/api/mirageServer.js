@@ -2,6 +2,7 @@ import {belongsTo, createServer, Factory, hasMany, Model} from "miragejs"
 import React from "react";
 import {GenerateData} from "../components/DataGenerator/DataGenereator";
 import {states} from "./states";
+import {getComparer, getComparerAsc, getComparerDesc} from "./sort";
 
 
 export const mirageServer = () => {
@@ -14,6 +15,10 @@ export const mirageServer = () => {
         })
     }
 
+
+
+
+
     const getFilterSource = (filtered) => {
         return filtered ? filtered : initialData;
     }
@@ -21,9 +26,25 @@ export const mirageServer = () => {
     let server = createServer({
 
             routes() {
+
+                // --- fetch data
+
                 this.get("/api/data", () => {
                     return stringifyResponse('orders', initialData);
                 });
+
+                // --- sort
+
+                this.post("/api/sort", (schema, request) => {
+
+                    let attrs = JSON.parse(request.requestBody);
+                    alert(JSON.stringify(attrs));
+                    const comparer = getComparer(attrs.sortParam, attrs.sortDirection);
+                    initialData.sort(comparer)
+                    return stringifyResponse('orders', initialData)
+                })
+
+                // --- delete
 
                 this.post("/api/delete", (schema, request) => {
                     let attrs = JSON.parse(request.requestBody);
@@ -40,6 +61,7 @@ export const mirageServer = () => {
                     return stringifyResponse('orders', initialData)
                 })
 
+                // --- filter
 
                 this.post("/api/filterNoOrPerson", (schema, request) => {
                     let attrs = JSON.parse(request.requestBody);
@@ -69,7 +91,7 @@ export const mirageServer = () => {
 
                     if (attrs.dateTo)
                         filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - attrs.dateTo.getTime()) <= 0));
-                    
+
                     if (attrs.filterOrderStates.length != 0)
                         filtered = getFilterSource(filtered).filter((item) => attrs.filterOrderStates.includes(item.state))
 

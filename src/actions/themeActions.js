@@ -1,11 +1,8 @@
-import {TOGGLE_THEME} from "./actionTypes";
+import {SET_LIGHT_THEME} from "./actionTypes";
 
-export const toggleTheme = () => {
+export const setLightTheme = (value) => {
     return {
-        type: TOGGLE_THEME
+        type: SET_LIGHT_THEME,
+        payload: value
     }
-}
-
-export default {
-    toggleTheme
 }

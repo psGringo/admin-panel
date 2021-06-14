@@ -2,7 +2,7 @@ import React from "react";
 import styles from './ModalForm.Delete.module.css';
 import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleModalWindowDeleteVisible} from "../../../actions/modalWindowDeleteActions";
+import {toggleModalWindowDeleteVisible} from "../../../actions/modalFormDeleteActions";
 import {deleteSelectedTableRows} from "../../../actions/tableDataActions";
 
 export const ModalFormDelete = () => {

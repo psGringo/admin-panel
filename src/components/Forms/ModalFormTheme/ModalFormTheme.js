@@ -4,7 +4,10 @@ import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
 import {IconButton} from "../../Buttons/IconButton/IconButton";
 import {ReactComponent as Sun} from "../../../static/sun.svg";
-import {modalFormTheme} from "../../../reducers/modalFormThemeReducers";
+import {ReactComponent as Moon} from "../../../static/moon.svg";
+import {setLightTheme} from "../../../actions/themeActions";
+import {toggleModalFormThemeVisible} from "../../../actions/modalFormThemeActions";
+
 
 export const ModalFormTheme = () => {
 
@@ -13,17 +16,15 @@ export const ModalFormTheme = () => {
     const dispatch = useDispatch();
 
     const handleLightThemeOnClick = () => {
-        // dispatch(deleteSelectedTableRows( ({selectedRows})));
-        // dispatch(toggleModalWindowDeleteVisible());
-        alert('to do');
+        dispatch(setLightTheme(true));
+        dispatch(toggleModalFormThemeVisible());
+
     }
 
     const handleDarkThemeOnClick = () => {
-        // dispatch(deleteSelectedTableRows( ({selectedRows})));
-        // dispatch(toggleModalWindowDeleteVisible());
-        alert('to do');
+        dispatch(setLightTheme(false));
+        dispatch(toggleModalFormThemeVisible());
     }
-
 
 
 
@@ -43,21 +44,20 @@ export const ModalFormTheme = () => {
                 <IconButton
                     text="Светлая тема"
                     icon={<Sun />}
-                    // className={cc({
-                    //     [styles._]: true,
-                    //     [styles_icon_button._]: true,
-                    // })}
+                    className={cc({
+                        [styles.button]: true,
+                         [styles.buttonLight]: true,
+                    })}
 
                     onClick={handleLightThemeOnClick}
                 />
 
                 <IconButton
                     text="Темная тема"
-                    icon={<Sun />}
-                    // className={cc({
-                    //     [styles._]: true,
-                    //     [styles_icon_button._]: true,
-                    // })}
+                    icon={<Moon />}
+                    className={cc({
+                        [styles.button]: true,
+                    })}
 
                     onClick={handleDarkThemeOnClick}
                 />

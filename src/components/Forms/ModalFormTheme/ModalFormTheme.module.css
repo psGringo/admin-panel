@@ -2,8 +2,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 350px;
-    height: 200px;
+    width: 15rem;
+    height: 10rem;
     margin-left: -250px;
     margin-top: -100px;
     background: white;
@@ -21,7 +21,7 @@
 }
 
 .title {
-  margin: 2rem 2rem;
+  margin: 1rem 2rem;
   text-align: center;
 }
 
@@ -30,13 +30,21 @@
 }
 
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 0;
     color: white;
     background: #459DF5;
     border-radius: 5px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
     margin: 0.5rem 1rem;
     cursor: pointer;
-    width: 15rem;
+    width: 10rem;
+}
+
+.buttonLight {
+    background-color: white;
+    color: #459DF5;
 }

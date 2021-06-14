@@ -5,7 +5,7 @@ import {IconButton} from "../IconButton/IconButton";
 import cc from "classcat";
 import styles_icon_button from "../IconButton/IconButton.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleModalWindowDeleteVisible} from "../../../actions/modalWindowDeleteActions";
+import {toggleModalWindowDeleteVisible} from "../../../actions/modalFormDeleteActions";
 
 export const ButtonDelete = () => {
     const selectedRows = useSelector(state => state.tableData.selectedRows);

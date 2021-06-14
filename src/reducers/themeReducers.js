@@ -1,21 +1,21 @@
-import {TOGGLE_THEME} from "../actions/actionTypes";
+import {SET_LIGHT_THEME} from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     isLight: true
 }
 
-function handleToggleTheme(state) {
+function handleToggleTheme(state, isLightTheme) {
     const {isLight} = state;
     return {
         ...state,
-        isLight: !isLight
+        isLight: isLightTheme
     }
 }
 
 export const theme = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case TOGGLE_THEME:
-            return handleToggleTheme(state);
+        case SET_LIGHT_THEME:
+            return handleToggleTheme(state, action.payload);
 
         default:
             return state;

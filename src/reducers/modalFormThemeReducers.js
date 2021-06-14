@@ -3,7 +3,7 @@ import {
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
-    isVisible: true,
+    isVisible: false,
 }
 
 export const modalFormTheme = (state = INITIAL_STATE, action) => {

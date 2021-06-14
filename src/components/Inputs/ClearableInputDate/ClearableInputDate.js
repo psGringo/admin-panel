@@ -5,7 +5,6 @@ import cc from "classcat";
 import DatePicker, {registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import locale from "date-fns/locale/ru";
-import {useDispatch, useSelector} from "react-redux";
 registerLocale("ru", locale)
 
 const CustomInput = (props) => {

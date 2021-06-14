@@ -3,7 +3,6 @@ import styles from './ButtonFiltersToggle.module.css';
 import {ReactComponent as Sun} from '../../../static/filter.svg';
 import {useDispatch} from "react-redux";
 import {IconButton} from "../IconButton/IconButton";
-import {ReactComponent as Pencil} from "../../../static/pencil.svg";
 import cc from "classcat";
 import styles_icon_button from "../IconButton/IconButton.module.css";
 import {ReactComponent as Bin} from "../../../static/bin.svg";

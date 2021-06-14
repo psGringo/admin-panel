@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './CheckboxLabel.module.css';
 
-
 export const CheckboxLabel = ({id, value, checked, onClick}) => {
     return (
         <div className={styles._}>

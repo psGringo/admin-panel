@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styles from './FilterIssueDate.module.css';
-import "react-datepicker/dist/react-datepicker.css";
 import {ClearableInputDate} from "../../Inputs/ClearableInputDate/ClearableInputDate";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilterDateFrom, setFilterDateTo} from "../../../actions/tableDataActions";

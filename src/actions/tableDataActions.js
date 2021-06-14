@@ -16,7 +16,6 @@ import {
     SET_STATES, SET_ORDER,
 } from "./actionTypes";
 
-import {GenerateData} from "../utils/DataGenerator/DataGenereator";
 import {fetchWrapper} from "../api/fetchWrapper";
 import {toggleLoadIndicationVisible} from "./loadIndicationActions";
 import {toggleTableDataSortDirections} from "./tableDataSortDirectionsActions";

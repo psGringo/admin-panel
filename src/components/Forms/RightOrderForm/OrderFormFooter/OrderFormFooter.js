@@ -4,7 +4,6 @@ import {IconButton} from "../../../Buttons/IconButton/IconButton";
 import {ReactComponent as Confirmation} from '../../../../static/checkmark.svg';
 import cc from "classcat";
 import {useSelector} from "react-redux";
-import styles_icon_button from "../../../Buttons/IconButton/IconButton.module.css";
 
 export const OrderFormFooter = ({onClick}) => {
 

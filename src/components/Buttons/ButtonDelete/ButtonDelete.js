@@ -5,13 +5,13 @@ import {IconButton} from "../IconButton/IconButton";
 import cc from "classcat";
 import styles_icon_button from "../IconButton/IconButton.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleModalWindowDeleteVisible} from "../../../actions/modalFormDeleteActions";
+import {toggleModalFormDeleteVisible} from "../../../actions/modalFormDeleteActions";
 
 export const ButtonDelete = () => {
     const selectedRows = useSelector(state => state.tableData.selectedRows);
     const dispatch = useDispatch();
     const handleOnClick = () => {
-        (selectedRows.length > 0) && dispatch(toggleModalWindowDeleteVisible());
+        (selectedRows.length > 0) && dispatch(toggleModalFormDeleteVisible());
     }
 
 

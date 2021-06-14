@@ -13,8 +13,6 @@ export const PaginatorItem = ({value, active, invisible, onClick}) => {
         onClick={onClick}
         key = {value}
         >
-
-
             {value}
         </div>
     );

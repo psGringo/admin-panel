@@ -2,7 +2,7 @@ import React from "react";
 import styles from './ModalForm.Delete.module.css';
 import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleModalWindowDeleteVisible} from "../../../actions/modalFormDeleteActions";
+import {toggleModalFormDeleteVisible} from "../../../actions/modalFormDeleteActions";
 import {deleteSelectedTableRows} from "../../../actions/tableDataActions";
 
 export const ModalFormDelete = () => {
@@ -13,12 +13,12 @@ export const ModalFormDelete = () => {
     const dispatch = useDispatch();
 
     const handleCancel = () => {
-        dispatch(toggleModalWindowDeleteVisible());
+        dispatch(toggleModalFormDeleteVisible());
     }
 
     const handleDelete = () => {
         dispatch(deleteSelectedTableRows( ({selectedRows})));
-        dispatch(toggleModalWindowDeleteVisible());
+        dispatch(toggleModalFormDeleteVisible());
     }
 
     return (

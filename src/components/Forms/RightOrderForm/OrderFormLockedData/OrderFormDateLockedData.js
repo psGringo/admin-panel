@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './OrderFormDateLockedData.module.css';
 import {ReactComponent as Lock} from '../../../../static/locked.svg';
-import {useSelector} from "react-redux";
 
 
 export const OrderFormDateLockedData = ({text, value}) => {

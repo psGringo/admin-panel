@@ -4,10 +4,11 @@ import {theme} from "./themeReducers";
 import {orderSelect} from "./orderSelectReducers";
 import {tableData} from "./tableDataReducers";
 import {orderStates} from "./orderStateReducers";
-import {modalWindowDelete} from "./modalWindowDeleteReducers";
+import {modalFormDelete} from "./modalFormDeleteReducers";
 import {orderForm} from "./orderFormReducers";
 import {loadIndication} from "./loadIndicationReducers";
 import {tableDataSortDirections} from "./tableDataSortDirection";
+import {modalFormTheme} from "./modalFormThemeReducers";
 
 export const rootReducer = combineReducers({
     tableData,
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers({
     theme,
     orderSelect,
     orderStates,
-    modalWindowDelete,
+    modalFormDelete,
+    modalFormTheme,
     orderForm,
     loadIndication
 })

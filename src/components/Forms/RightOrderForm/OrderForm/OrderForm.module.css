@@ -10,6 +10,7 @@
     transition-property: width;
     transition-duration: 0.5s;
     display: none;
+    overflow: auto;
 }
 
 .content {
@@ -26,4 +27,27 @@
 .visible {
     width: 480px;
     display: block;
+}
+
+/* setting up scroll bar */
+._::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 7px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    color: red;
+}
+
+._::-webkit-scrollbar
+{
+    width: 7px;
+    background-color: #F5F5F5;
+    color: red;
+}
+
+._::-webkit-scrollbar-thumb
+{
+    border-radius: 50px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.34);
+    color: red;
 }

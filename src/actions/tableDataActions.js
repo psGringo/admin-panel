@@ -12,11 +12,11 @@ import {
     TOGGLE_CHECKED_ALL_ROWS,
     DELETE_SELECTED_TABLE_ROWS,
     UPDATE_INDEX_OF_SELECTED_ORDER,
-    GET_DATA,
-    GET_STATES, TOGGLE_TABLE_DATA_SORT,
+    SET_ORDERS,
+    SET_STATES, SET_ORDER,
 } from "./actionTypes";
 
-import {GenerateData} from "../components/DataGenerator/DataGenereator";
+import {GenerateData} from "../utils/DataGenerator/DataGenereator";
 import {fetchWrapper} from "../api/fetchWrapper";
 import {toggleLoadIndicationVisible} from "./loadIndicationActions";
 import {toggleTableDataSortDirections} from "./tableDataSortDirectionsActions";
@@ -105,16 +105,23 @@ export const changeActivePageIndex = (value) => {
     }
 }
 
-export const setData = (value) => {
+export const setOrders = (value) => {
     return {
-        type: GET_DATA,
+        type: SET_ORDERS,
+        payload: value
+    }
+}
+
+export const setOrder = (value) => {
+    return {
+        type: SET_ORDER,
         payload: value
     }
 }
 
 export const setStates = (value) => {
     return {
-        type: GET_STATES,
+        type: SET_STATES,
         payload: value
     }
 }
@@ -125,7 +132,7 @@ export const fetchTableData = () => (dispatch) => {
 
     fetchWrapper.get('api/data')
         .then(data => {
-                dispatch(setData(data.orders));
+                dispatch(setOrders(data.orders));
                 dispatch(toggleLoadIndicationVisible());
             }
         )
@@ -136,19 +143,24 @@ export const fetchTableData = () => (dispatch) => {
 }
 
 export const fetchStates = () => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
     fetchWrapper.get('api/states')
         .then(data => {
-                dispatch(setStates(data.states))
+                dispatch(setStates(data.states));
+                dispatch(toggleLoadIndicationVisible());
             }
         )
-        .catch(error => alert(error));
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error);
+        });
 }
 
 const updateTableData = (value, dispatch, url) => {
     dispatch(toggleLoadIndicationVisible());
     fetchWrapper.post(url, value)
         .then(data => {
-                dispatch(setData(data.orders));
+                dispatch(setOrders(data.orders));
                 dispatch(toggleLoadIndicationVisible());
             }
         )
@@ -173,4 +185,18 @@ export const deleteSelectedTableRows = (value) => (dispatch) => {
 export const sortTableRows = (value) => (dispatch) => {
     updateTableData(value, dispatch, 'api/sort');
     dispatch(toggleTableDataSortDirections(value.sortParam));
+}
+
+export const fetchOrder = (id) => (dispatch) => {
+    dispatch(toggleLoadIndicationVisible());
+    fetchWrapper.get('api/order/' + id)
+        .then(data => {
+                dispatch(setOrder(data.order));
+                dispatch(toggleLoadIndicationVisible());
+            }
+        )
+        .catch(error => {
+            dispatch(toggleLoadIndicationVisible());
+            alert(error)
+        });
 }

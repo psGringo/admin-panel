@@ -15,7 +15,6 @@ const handleToggleSort = (state, action) => {
 
     const currentValue = state[`${action.payload}`];
 
-    alert(state[`${action.payload}`]);
     let sortDirection;
 
     switch (currentValue) {

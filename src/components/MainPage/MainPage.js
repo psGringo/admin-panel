@@ -1,11 +1,11 @@
 import React from "react";
 import classes from './MainPage.module.css';
 import {Header} from "../Header/Header";
-import {Filter} from "../Filter/Filter";
-import {Table} from "../Table/Table";
-import {TableFooter} from "../TableFooter/TableFooter";
-import {ModalWindowDelete} from "../ModalWindowDelete/ModalWindowDelete";
-import {OrderForm} from "../OrderForm/OrderForm";
+import {Filter} from "../Filters/Filter/Filter";
+import {Table} from "../Tables/MainTable/Table/Table";
+import {TableFooter} from "../Tables/MainTable/TableFooter/TableFooter";
+import {ModalFormDelete} from "../Forms/ModalFormDelete/ModalFormDelete";
+import {OrderForm} from "../Forms/RightOrderForm/OrderForm/OrderForm";
 
 export const MainPage = () => {
 
@@ -15,7 +15,7 @@ export const MainPage = () => {
                 <Filter />
                 <Table />
                 <TableFooter />
-                <ModalWindowDelete />
+                <ModalFormDelete />
                 <OrderForm  />
             </div>
     );

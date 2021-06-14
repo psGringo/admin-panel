@@ -1,6 +1,6 @@
 import {belongsTo, createServer, Factory, hasMany, Model} from "miragejs"
 import React from "react";
-import {GenerateData} from "../components/DataGenerator/DataGenereator";
+import {GenerateData} from "../utils/DataGenerator/DataGenereator";
 import {states} from "./states";
 import {getComparer, getComparerAsc, getComparerDesc} from "./sort";
 
@@ -16,9 +16,6 @@ export const mirageServer = () => {
     }
 
 
-
-
-
     const getFilterSource = (filtered) => {
         return filtered ? filtered : initialData;
     }
@@ -27,10 +24,35 @@ export const mirageServer = () => {
 
             routes() {
 
-                // --- fetch data
+                // --- fetch orders
 
                 this.get("/api/data", () => {
                     return stringifyResponse('orders', initialData);
+                });
+
+                // --- fetch order
+
+                this.get("/api/order/:id", (schema, request) => {
+                    let id = request.params.id;
+                    return stringifyResponse('order', initialData.find(order => order.id === Number(id)));
+                });
+
+                // --- update order
+
+                this.post("api/updateOrder/", (schema, request) => {
+                    let attrs = JSON.parse(request.requestBody);
+                    const order = initialData.find(order => order.id === Number(attrs.id));
+                    order.person = attrs.person;
+                    order.state = attrs.state;
+                    return stringifyResponse('order', order)
+                })
+
+                // --- states
+
+                this.get("/api/states", (schema) => {
+                    return JSON.stringify({
+                        states: states
+                    });
                 });
 
                 // --- sort
@@ -102,12 +124,6 @@ export const mirageServer = () => {
                     return stringifyResponse('orders', filtered)
                 })
 
-
-                this.get("/api/states", (schema) => {
-                    return JSON.stringify({
-                        states: states
-                    });
-                });
             }
         }
     );

@@ -6,7 +6,7 @@ import {
     TOGGLE_ROW_CHECKED,
     TOGGLE_CHECKED_ALL_ROWS,
     UPDATE_ORDER,
-    UPDATE_INDEX_OF_SELECTED_ORDER, GET_DATA, GET_STATES
+    UPDATE_INDEX_OF_SELECTED_ORDER, SET_ORDERS, SET_STATES, SET_ORDER
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -24,7 +24,7 @@ const INITIAL_STATE = {
 }
 
 const handleToggleSelectedRow = (state, action) => {
-    const id = action.payload;
+    const id = String(action.payload);
     const selectedRows = state.selectedRows.slice();
     const index = selectedRows.indexOf(id);
     index === -1 ? selectedRows.push(id) : selectedRows.splice(index, 1)
@@ -37,7 +37,7 @@ const handleCheckedAllRows = (state, isChecked) => {
     return selectedRows;
 }
 
-const calcTableData = (state, data) => {
+const setOrders = (state, data) => {
     const countPages = Math.ceil(data.length / state.limit);
     const rightIndex = (countPages < 5) ? countPages : 5;
     return {
@@ -74,25 +74,41 @@ const updateIndexOfSelectedOrder = (state, selectedOrderId) => {
     return index;
 }
 
+const setOrder = (state, order) => {
+    const page = state.page.slice();
+    const orderInData = page.find(item => item.id === order.id);
+    if (orderInData) {
+        orderInData.person = order.person;
+        orderInData.state = order.state;
+    }
+    return {
+        ...state,
+        page: page
+    }
+}
+
 export const tableData = (state = INITIAL_STATE, action) => {
+
     switch (action.type) {
 
-        case GET_DATA:
-            return calcTableData(state, action.payload);
+        case SET_ORDERS:
+            return setOrders(state, action.payload);
 
-        case GET_STATES: {
-            return {
-                ...state,
-                states: action.payload
-            }
-        }
-
+        case SET_ORDER:
+            return setOrder(state, action.payload);
 
         case GET_PAGE:
             return {
                 ...state,
                 page: state.data.slice(action.payload * state.limit, action.payload * state.limit + state.limit)
             }
+
+        case SET_STATES: {
+            return {
+                ...state,
+                states: action.payload
+            }
+        }
 
         case TOGGLE_ROW_CHECKED:
             return {

@@ -1,7 +1,8 @@
 import {
-    SET_ORDER_FORM_DATA_CHANGED,
-    TOGGLE_ORDER_FORM_VISIBLE, UPDATE_CONFIRMATION_CODE, UPDATE_FORM_DATA
-    , UPDATE_ORDER
+    SET_ORDER,
+    SET_ORDER_CHANGED,
+    TOGGLE_ORDER_FORM_VISIBLE,
+    UPDATE_CONFIRMATION_CODE_ON_ORDER_FORM, UPDATE_PERSON_ON_ORDER_FORM, UPDATE_STATE_ON_ORDER_FORM
 } from "../actions/actionTypes";
 
 const INITIAL_STATE = {
@@ -9,6 +10,8 @@ const INITIAL_STATE = {
     state: '',
     date: null,
     person: '',
+    summa: '',
+    orderItems: [],
     isVisible: false,
     isDataChanged: false,
     confirmationCode: null,
@@ -17,6 +20,7 @@ const INITIAL_STATE = {
 
 export const orderForm = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+
         case TOGGLE_ORDER_FORM_VISIBLE: {
             return {
                 ...state,
@@ -24,23 +28,39 @@ export const orderForm = (state = INITIAL_STATE, action) => {
             };
         }
 
-        case UPDATE_FORM_DATA:
+        case UPDATE_PERSON_ON_ORDER_FORM:
+            return {
+                ...state,
+                person: action.payload
+            }
+
+        case UPDATE_STATE_ON_ORDER_FORM:
+            return {
+                ...state,
+                state: action.payload
+            }
+
+        case SET_ORDER: {
             return {
                 ...state,
                 id: action.payload.id,
                 state: action.payload.state,
                 date: action.payload.date,
-                person: action.payload.person
+                person: action.payload.person,
+                summa: action.payload.summa,
+                orderItems: action.payload.orderItems
             }
+        }
 
-        case SET_ORDER_FORM_DATA_CHANGED: {
+
+        case SET_ORDER_CHANGED: {
             return {
                 ...state,
                 isDataChanged: action.payload
             }
         }
 
-        case UPDATE_CONFIRMATION_CODE:
+        case UPDATE_CONFIRMATION_CODE_ON_ORDER_FORM:
             return {
                 ...state,
                 confirmationCode: action.payload,

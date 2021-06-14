@@ -12,7 +12,7 @@ export const OrderItemsTableDataRow = ({contents}) => {
                 {name}
             </div>
             <div className={styles.price}>
-                {price}
+                {price + ' р.'}
             </div>
         </div>
     );

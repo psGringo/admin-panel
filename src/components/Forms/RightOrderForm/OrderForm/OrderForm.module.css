@@ -2,7 +2,6 @@
     position: absolute;
     right: 0px;
     top: 0%;
-    /*width: 100px;*/
 
     height: 99vh;
     background: white;
@@ -26,6 +25,5 @@
 
 .visible {
     width: 480px;
-    /*visibility: visible;*/
     display: block;
 }

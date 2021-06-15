@@ -105,23 +105,28 @@ export const mirageServer = () => {
                         return stringifyResponse('orders', initialData);
 
                     let filtered;
+                    const dateFrom = new Date(attrs.dateFrom);
+                    const dateTo = new Date(attrs.dateTo);
 
                     if (attrs.dateFrom)
-                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - attrs.dateFrom.getTime()) >= 0));
+                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - dateFrom.getTime()) >= 0));
 
                     if (attrs.dateTo)
-                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - attrs.dateTo.getTime()) <= 0));
+                        filtered = getFilterSource(filtered).filter((item) => (((item.date).getTime() - dateTo.getTime()) <= 0));
 
                     if (attrs.filterOrderStates.length != 0)
-                        filtered = getFilterSource(filtered).filter((item) => attrs.filterOrderStates.includes(item.state))
+                        filtered = getFilterSource(filtered).filter((item) => attrs.filterOrderStates.includes(item.state));
 
                     if (attrs.summaFrom)
-                        filtered = getFilterSource(filtered).filter((item) => item.summa >= parseFloat(attrs.summaFrom))
+                        filtered = getFilterSource(filtered).filter((item) => item.summa >= parseFloat(attrs.summaFrom));
 
                     if (attrs.summaTo)
-                        filtered = getFilterSource(filtered).filter((item) => item.summa <= parseFloat(attrs.summaTo))
+                        filtered = getFilterSource(filtered).filter((item) => item.summa <= parseFloat(attrs.summaTo));
 
-                    return stringifyResponse('orders', filtered)
+                    const result = filtered.slice();
+                    filtered = null;
+
+                    return stringifyResponse('orders', result)
                 })
 
             }

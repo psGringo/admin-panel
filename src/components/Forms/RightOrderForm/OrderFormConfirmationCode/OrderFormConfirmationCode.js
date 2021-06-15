@@ -3,11 +3,13 @@ import styles from './OrderFormConfirmationCode.module.css';
 import {ReactComponent as Clear} from '../../../../static/x-medium.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {updateConfirmationCode} from "../../../../actions/orderFormActions";
+import cc from "classcat";
 
 
 export const OrderFormConfirmationCode = ({text}) => {
 
-    let value2 = useSelector(state => state.orderForm.confirmationCode);
+    const isLightTheme = useSelector(state => state.theme.isLight);
+    let value = useSelector(state => state.orderForm.confirmationCode);
     const dispatch = useDispatch();
 
     const handleChange = (e) => {
@@ -26,11 +28,14 @@ export const OrderFormConfirmationCode = ({text}) => {
             </div>
             <div className={styles.date}>
                 <input
+                    className={cc({
+                        [styles.input]: true,
+                        [styles.darkTheme]: !isLightTheme,
+                    })}
                     type="text"
                     placeholder="Введите ваш код подтверждения"
-                    className={styles.input}
                     onChange={handleChange}
-                    value={value2}
+                    value={value}
                 />
                 <Clear className={styles.icon} onClick={handleClear}/>
             </div>

@@ -5,6 +5,9 @@ import {useSelector} from "react-redux";
 
 
 export const OrderStatusCombobox = () => {
+
+    const isLightTheme = useSelector(state => state.theme.isLight);
+
     const states = useSelector(state => state.orderStates);
     return (
         <div className={styles._}>

@@ -11,7 +11,7 @@ import {fetchOrder, updateIndexOfSelectedOrder} from "../../../actions/tableData
 export const ButtonChangeStatus = () => {
 
     const selectedRows = useSelector(state => state.tableData.selectedRows);
-    const data = useSelector(state => state.tableData.data);
+    const isLightTheme = useSelector(state => state.theme.isLight);
     const dispatch = useDispatch();
 
     const showForm = () => {
@@ -35,7 +35,8 @@ export const ButtonChangeStatus = () => {
                 className={cc({
                     [styles._]: true,
                     [styles.disabled]: isDisabled(),
-                    [styles_icon_button._]: true
+                    [styles_icon_button._]: true,
+                    [styles.darkTheme]: !isLightTheme,
                 })}
                 onClick={handleClick}
             />

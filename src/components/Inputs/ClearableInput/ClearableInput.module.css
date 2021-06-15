@@ -14,7 +14,6 @@
 }
 
 .input {
-    /*flex: 1 0;*/
     min-width: 2rem;
     min-height: 1rem;
     background-color: white;
@@ -38,6 +37,11 @@ input:focus {
 
 .icon:hover {
     cursor: pointer;
+}
+
+.darkTheme {
+    background-color: #2B2D33;
+    color: #BCC4CC;
 }
 
 

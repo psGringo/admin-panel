@@ -11,6 +11,7 @@ export const OrderSelect = ({values, defaultValue}) => {
 
     const isExpanded = useSelector(state => state.orderSelect.isExpanded);
     const dispatch = useDispatch();
+    const isLightTheme = useSelector(state => state.theme.isLight);
 
 
     const handleCheckBoxClick = (value) => {
@@ -22,9 +23,23 @@ export const OrderSelect = ({values, defaultValue}) => {
     }
 
     return (
-        <div className={styles._}>
-            <div className={styles.selectBox} onClick={handleClick}>
-                <select className={styles.select} id="selectBox">
+        <div className={cc({
+            [styles._]: true,
+            [styles.darkTheme]: !isLightTheme,
+        })}
+        >
+            <div className={cc({
+                [styles.selectBox]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+                 onClick={handleClick}
+            >
+                <select
+                        className={cc({
+                            [styles.select]: true,
+                            [styles.darkTheme]: !isLightTheme,
+                        })}
+                        id="selectBox">
                     <option>{defaultValue}</option>
                 </select>
                 <div className={styles.overSelect}></div>
@@ -34,6 +49,7 @@ export const OrderSelect = ({values, defaultValue}) => {
             <div className={cc({
                 [styles.checkboxes]: true,
                 [styles.checkboxesVisible]: isExpanded,
+                [styles.darkTheme]: !isLightTheme
             })}
             >
                 {values.map((value) => (<CheckboxLabel key={value} value={value} onClick={handleCheckBoxClick}/>))}

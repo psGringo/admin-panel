@@ -9,3 +9,9 @@
 .disabled {
     opacity: 0.5;
 }
+
+.darkTheme {
+    background-color: #459DF5;
+    color: #2B2D33;
+}
+

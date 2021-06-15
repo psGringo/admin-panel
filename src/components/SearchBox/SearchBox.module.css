@@ -32,3 +32,8 @@ input:focus {
     stroke: deepskyblue;
 }
 
+.darkTheme {
+    background-color: #1F2629;
+    color: #EBF0F5;
+}
+

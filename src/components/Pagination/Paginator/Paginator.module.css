@@ -1,7 +1,6 @@
 ._ {
     display: flex;
     flex-grow: 1;
-    /*width: 20rem;*/
     justify-content: flex-end;
     align-items: center;
     margin-right: 1rem;
@@ -29,4 +28,9 @@
 
 .invisible {
     display:none
+}
+
+.darkTheme {
+    background-color: #459DF5;
+    color: #2B2D33;
 }

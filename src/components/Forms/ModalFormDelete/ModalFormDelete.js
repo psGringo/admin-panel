@@ -9,6 +9,7 @@ export const ModalFormDelete = () => {
 
     const isVisible = useSelector(state => state.modalFormDelete.isVisible);
     const selectedRows = useSelector(state => state.tableData.selectedRows);
+    const isLightTheme = useSelector(state => state.theme.isLight);
 
     const dispatch = useDispatch();
 
@@ -25,6 +26,7 @@ export const ModalFormDelete = () => {
         <div className={cc({
             [styles._]: true,
             [styles.visible]: isVisible,
+            [styles.darkTheme]: !isLightTheme
         })}
         >
             <div className={styles.windowContent}>

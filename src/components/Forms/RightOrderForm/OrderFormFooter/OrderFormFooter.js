@@ -9,13 +9,19 @@ export const OrderFormFooter = ({onClick}) => {
 
     const isDataChanged = useSelector(state => state.orderForm.isDataChanged);
     const isLoadIndicationVisible = useSelector(state => state.loadIndication.isVisible);
+    const isLightTheme = useSelector(state => state.theme.isLight);
 
     return (
         <div className={styles._}>
-            <div className={styles.footerContent}>
-                <div className={cc({
+            <div
+                className={cc({
+                    [styles.footerContent]: true,
+                    [styles.darkThemeContent]: !isLightTheme
+                })}
+            >
+                < div className={cc({
                     [styles.title]: true,
-                    [styles.titleInvisible]: !isLoadIndicationVisible
+                    [styles.titleInvisible]: !isLoadIndicationVisible,
                 })}>
                     Загрузка...
                 </div>
@@ -24,7 +30,8 @@ export const OrderFormFooter = ({onClick}) => {
                     icon={<Confirmation className={styles.icon}/>}
                     className={cc({
                         [styles.button]: true,
-                        [styles.disabled]: !isDataChanged
+                        [styles.disabled]: !isDataChanged,
+                        [styles.darkThemeButton]: !isLightTheme
                     })}
 
                     onClick={onClick}

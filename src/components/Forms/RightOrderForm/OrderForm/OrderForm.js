@@ -17,11 +17,11 @@ import {
 import {OrderItemsTable} from "../../../Tables/OrderItemsTable/Table/OrderItemTable";
 
 
-
 export const OrderForm = () => {
 
     const isVisible = useSelector(state => state.orderForm.isVisible)
     const data = useSelector(state => state.orderForm);
+    const isLightTheme = useSelector(state => state.theme.isLight);
     const dispatch = useDispatch();
 
     const id = useSelector(state => state.orderForm.id);
@@ -55,11 +55,16 @@ export const OrderForm = () => {
                 [styles.visible]: isVisible,
             })}
         >
-            <div className={styles.content}>
+            <div className={cc({
+                [styles.content]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+
+            >
                 <OrderFormHeader orderNumber={id}/>
                 <OrderFormDateLockedData text="Дата и время" value={getDate(date)}/>
                 <OrderFormPerson value={person} onChange={handleOnChangePerson}/>
-                <OrderItemsTable />
+                <OrderItemsTable/>
                 <OrderFormDateLockedData text="Уровень лояльности" value="Новичок"/>
                 <OrderFormState orderState={state} onChange={handleOnChangeState}/>
                 <OrderFormConfirmationCode text="Код подтверждения" defaultValue={123}/>

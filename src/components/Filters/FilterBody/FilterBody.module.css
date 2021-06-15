@@ -3,3 +3,8 @@
     align-items: center;
     background-color: #EBF0F5;
 }
+
+.darkTheme {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

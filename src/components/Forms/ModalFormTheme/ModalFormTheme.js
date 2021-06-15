@@ -12,7 +12,7 @@ import {toggleModalFormThemeVisible} from "../../../actions/modalFormThemeAction
 export const ModalFormTheme = () => {
 
     const isVisible = useSelector(state => state.modalFormTheme.isVisible);
-
+    const isLightTheme = useSelector(state => state.theme.isLight);
     const dispatch = useDispatch();
 
     const handleLightThemeOnClick = () => {
@@ -33,6 +33,7 @@ export const ModalFormTheme = () => {
         <div className={cc({
             [styles._]: true,
             [styles.visible]: isVisible,
+            [styles.darkTheme]: !isLightTheme,
         })}
         >
             <div className={styles.windowContent}>

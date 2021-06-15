@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 
 export const MainPage = () => {
 
-    const isLightTheme = useSelector(state => state.theme.isLight)
+    const isLightTheme = useSelector(state => state.theme.isLight);
 
     useEffect(() => {
         (!isLightTheme) && document.body.classList.add(styles.darkTheme);

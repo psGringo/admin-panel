@@ -18,3 +18,8 @@
     border-radius: 5px;
     color: black;
 }
+
+.darkTheme {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

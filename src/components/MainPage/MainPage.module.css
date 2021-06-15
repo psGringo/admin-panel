@@ -8,5 +8,6 @@
 }
 
 .darkTheme {
-    background-color: hsl(0, 0%, 90%);
+    background-color: #2B2D33;
+    color: #BCC4CC;
 }

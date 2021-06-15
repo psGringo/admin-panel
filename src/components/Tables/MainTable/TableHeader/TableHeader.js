@@ -8,6 +8,7 @@ import {sortTableRows, toggleAllRowsChecked, toggleRowChecked} from "../../../..
 
 export const TableHeader = () => {
 
+    const isLightTheme = useSelector(state => state.theme.isLight);
     const dispatch = useDispatch();
     const handleOnChangeCheckBox = ({currentTarget}) => {
         dispatch(toggleAllRowsChecked(currentTarget.checked));
@@ -45,7 +46,10 @@ export const TableHeader = () => {
     }
 
     return (
-        <div className={styles._}>
+        <div className={cc({
+            [styles._]: true,
+            [styles.darkTheme]: !isLightTheme,
+        })}>
             <div className={styles.title}>
                 <div className={styles.titleFirstColumn}>
                     <Checkbox onChange={handleOnChangeCheckBox}
@@ -56,22 +60,38 @@ export const TableHeader = () => {
                 </div>
             </div>
 
-            <div className={styles.title} onClick={handleSortDatesClick}>
+            <div className={cc({
+                [styles.title]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+                 onClick={handleSortDatesClick}>
                 Дата
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title} onClick={handleSortStatesClick}>
+            <div className={cc({
+                [styles.title]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+                 onClick={handleSortStatesClick}>
                 Статус
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title} onClick={handleSortPositionsClick}>
+            <div className={cc({
+                [styles.title]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+                 onClick={handleSortPositionsClick}>
                 Позиций
                 <V_Arrow className={styles.icon}/>
             </div>
 
-            <div className={styles.title} onClick={handleSortSummaClick}>
+            <div className={cc({
+                [styles.title]: true,
+                [styles.darkTheme]: !isLightTheme,
+            })}
+                 onClick={handleSortSummaClick}>
                 Сумма
                 <V_Arrow className={styles.icon}/>
             </div>
@@ -79,6 +99,7 @@ export const TableHeader = () => {
             <div className={cc({
                 [styles.title]: true,
                 [styles.titlePerson]: true,
+                [styles.darkTheme]: !isLightTheme
             })}
                  onClick={handleSortPersonClick}
             >

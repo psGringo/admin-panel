@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './FilterOrderSum.module.css';
-import {ClearableInput} from "../../Checkboxes/ClearableInput/ClearableInput";
+import {ClearableInput} from "../../Inputs/ClearableInput/ClearableInput";
 import {useDispatch, useSelector} from "react-redux";
 import {setFilterSummaFrom, setFilterSummaTo} from "../../../actions/tableDataActions";
 

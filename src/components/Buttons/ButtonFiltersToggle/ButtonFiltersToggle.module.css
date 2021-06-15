@@ -9,7 +9,10 @@
 ._:hover {
     background-color: #459DF5;
     color: white;
-
 }
 
+.darkTheme {
+    background-color: #459DF5;
+    color: #2B2D33;
+}
 

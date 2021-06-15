@@ -49,3 +49,13 @@
 .disabled {
     opacity: 0.5;
 }
+
+.darkThemeButton {
+    background-color: #459DF5;
+    color: #2B2D33;
+}
+
+.darkThemeContent {
+    background-color: #1F2629;
+    color: #EBF0F5;
+}

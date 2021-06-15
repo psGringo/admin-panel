@@ -20,3 +20,9 @@
     border-radius: 5px;
     background-color: white;
 }
+
+
+.darkTheme {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

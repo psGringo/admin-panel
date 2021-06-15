@@ -2,7 +2,12 @@ import React, {useEffect, useState} from "react";
 import styles from './Paginator.module.css';
 import {PaginatorItem} from "../PaginatiorItem/PaginatorItem";
 import {useDispatch, useSelector} from "react-redux";
-import {changeActivePageIndex, changeLeftPageIndex, changeRightPageIndex, getPage} from "../../../actions/tableDataActions";
+import {
+    changeActivePageIndex,
+    changeLeftPageIndex,
+    changeRightPageIndex,
+    getPage
+} from "../../../actions/tableDataActions";
 import cc from "classcat";
 
 
@@ -12,6 +17,7 @@ export const Paginator = () => {
     const leftIndex = useSelector(state => state.tableData.leftIndex);
     const rightIndex = useSelector(state => state.tableData.rightIndex);
     const activeIndex = useSelector(state => state.tableData.activeIndex);
+    const isLightTheme = useSelector(state => state.theme.isLight);
 
     const dispatch = useDispatch();
 
@@ -59,13 +65,21 @@ export const Paginator = () => {
         >
             <div className={styles.paginator}>
 
-                <div className={styles.arrow} onClick={previous}>
+                <div className={cc({
+                    [styles.arrow]: true,
+                    [styles.darkTheme]: !isLightTheme,
+                })}
+                     onClick={previous}>
                     {'<'}
                 </div>
 
                 {getPages(leftIndex, rightIndex, activeIndex)}
 
-                <div className={styles.arrow} onClick={next}>
+                <div className={cc({
+                    [styles.arrow]: true,
+                    [styles.darkTheme]: !isLightTheme,
+                })}
+                     onClick={next}>
                     {'>'}
                 </div>
             </div>

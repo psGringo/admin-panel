@@ -23,10 +23,7 @@ export const OrderSelect = ({values, defaultValue}) => {
     }
 
     return (
-        <div className={cc({
-            [styles._]: true,
-            [styles.darkTheme]: !isLightTheme,
-        })}
+        <div className={styles._}
         >
             <div className={cc({
                 [styles.selectBox]: true,

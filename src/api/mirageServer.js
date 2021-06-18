@@ -1,10 +1,9 @@
-import {belongsTo, createServer, Factory, hasMany, Model} from "miragejs"
-import React from "react";
+import { createServer} from "miragejs"
 import {GenerateData} from "../utils/DataGenerator/DataGenereator";
 import {states} from "./states";
-import {getComparer, getComparerAsc, getComparerDesc} from "./sort";
+import {getComparer} from "./sort";
 
-
+/* eslint-disable */
 export const mirageServer = () => {
 
     const initialData = GenerateData(200);
@@ -136,12 +135,3 @@ export const mirageServer = () => {
 
     return server;
 }
-
-const getRandomFromArray = (a) => {
-    return a[Math.floor(Math.random() * a.length)]
-}
-
-const randomDate = (start, end) => {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-}
-

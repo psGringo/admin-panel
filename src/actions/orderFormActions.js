@@ -2,7 +2,7 @@ import {
     UPDATE_PERSON_ON_ORDER_FORM,
     SET_ORDER_CHANGED,
     TOGGLE_ORDER_FORM_VISIBLE, UPDATE_CONFIRMATION_CODE_ON_ORDER_FORM, UPDATE_FORM_DATA,
-    UPDATE_ORDER, UPDATE_STATE_ON_ORDER_FORM
+    UPDATE_STATE_ON_ORDER_FORM
 } from "./actionTypes";
 import {toggleLoadIndicationVisible} from "./loadIndicationActions";
 import {fetchWrapper} from "../api/fetchWrapper";

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from './OrderSelect.module.css';
 import cc from "classcat";
 import {CheckboxLabel} from "../../Checkboxes/CheckboxLabel/CheckboxLabel";

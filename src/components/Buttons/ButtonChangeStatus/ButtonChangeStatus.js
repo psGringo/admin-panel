@@ -5,8 +5,8 @@ import {IconButton} from "../IconButton/IconButton";
 import styles_icon_button from "../IconButton/IconButton.module.css";
 import cc from "classcat";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleOrderFormVisible, updateFormData} from "../../../actions/orderFormActions";
-import {fetchOrder, updateIndexOfSelectedOrder} from "../../../actions/tableDataActions";
+import {toggleOrderFormVisible} from "../../../actions/orderFormActions";
+import {fetchOrder} from "../../../actions/tableDataActions";
 
 export const ButtonChangeStatus = () => {
 

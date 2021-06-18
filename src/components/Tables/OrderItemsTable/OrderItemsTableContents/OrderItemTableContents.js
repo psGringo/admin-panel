@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React from "react";
 import styles from './OrderItemTableContents.module.css';
 import {useSelector} from "react-redux";
 import {OrderItemsTableDataRow} from "../OrderItemsTableDataRow/OrderItemsTableDataRow";

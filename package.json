@@ -28,6 +28,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "eslintIgnore": [
+      "mirageServer.js"
     ]
   },
   "browserslist": {
@@ -45,6 +48,8 @@
   "devDependencies": {
     "bootstrap": "^5.0.1",
     "date-fns": "^2.22.1",
+    "eslint": "^7.28.0",
+    "eslint-plugin-react": "^7.24.0",
     "miragejs": "^0.1.41",
     "react-day-picker": "^7.4.10",
     "react-redux": "^7.2.4"

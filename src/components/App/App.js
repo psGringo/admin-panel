@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect} from "react";
+import React from "react";
 import {MainPage} from "../MainPage/MainPage";
 import {mirageServer} from "../../api/mirageServer";
 import {useDispatch} from "react-redux";

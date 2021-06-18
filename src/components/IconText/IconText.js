@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './IconText.module.css';
 
-export const IconText = ({text, icon, style, onClick}) => {
+export const IconText = ({text, icon, onClick}) => {
      return (
         <div
             className={styles._}

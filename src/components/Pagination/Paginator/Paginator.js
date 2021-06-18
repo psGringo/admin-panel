@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from './Paginator.module.css';
 import {PaginatorItem} from "../PaginatiorItem/PaginatorItem";
 import {useDispatch, useSelector} from "react-redux";

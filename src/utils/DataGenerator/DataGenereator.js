@@ -1,4 +1,3 @@
-import React from "react";
 import {states} from "../../api/states";
 
 export const GenerateData = (countRecords) => {

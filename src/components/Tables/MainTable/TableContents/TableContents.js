@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from "react";
+import React from "react";
 import styles from './TableContents.module.css';
 import {TableDataRow} from "../TableDataRow/TableDataRow";
 import {useSelector} from "react-redux";

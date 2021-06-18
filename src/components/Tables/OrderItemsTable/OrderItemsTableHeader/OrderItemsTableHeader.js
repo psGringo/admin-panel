@@ -9,11 +9,10 @@ export const OrderItemsTableHeader = () => {
     const isLightTheme = useSelector(state => state.theme.isLight);
 
     return (
-        <div className={styles._}
-             className={cc({
-                 [styles._]: true,
-                 [styles.darkTheme]: !isLightTheme,
-             })}
+        <div className={cc({
+            [styles._]: true,
+            [styles.darkTheme]: !isLightTheme,
+        })}
         >
             <div className={styles.art}>
                 Артикул

@@ -59,11 +59,14 @@ export const getComparerAsc = (sortParam) => {
     let res;
     switch (sortParam) {
         case 'date':
-            res = dateComparerAsc
+            res = dateComparerAsc;
+            break;
         case 'positions':
             res = numComparerAsc
+            break;
         case 'summa':
             res = numComparerAsc
+            break;
         default:
             res = strComparerAsc;
     }

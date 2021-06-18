@@ -16,8 +16,7 @@ export const OrderFormConfirmationCode = ({text}) => {
         dispatch(updateConfirmationCode(e.target.value));
     }
 
-    const handleClear = (e) => {
-
+    const handleClear = () => {
         dispatch(updateConfirmationCode(''))
     }
 

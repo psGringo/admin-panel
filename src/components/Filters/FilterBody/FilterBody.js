@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from './FilterBody.module.css';
 import {FilterIssueDate} from "../FilterIssueDate/FilterIssueDate";
 import {FilterOrderSum} from "../FilterOrderSum/FilterOrderSum";

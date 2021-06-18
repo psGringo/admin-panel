@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import cc from "classcat";
 
 
-export const OrderFormState = ({orderState, onChange}) => {
+export const OrderFormState = ({id, orderState, onChange}) => {
     const states = useSelector(state => state.orderStates);
     const isLightTheme = useSelector(state => state.theme.isLight);
     return (
@@ -19,7 +19,7 @@ export const OrderFormState = ({orderState, onChange}) => {
                     })}
                     onChange = {onChange}
             >
-                {states.map(item => <option value={item} selected={orderState === item}> {item} </option>)}
+                {states.map(item => <option key = {id} value={item} selected={orderState === item}> {item} </option>)}
             </select>
         </div>
     );

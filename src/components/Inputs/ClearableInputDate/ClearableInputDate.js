@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './ClearableInputDate.module.css';
 import {ReactComponent as ClearButton} from '../../../static/x-large.svg';
 import cc from "classcat";

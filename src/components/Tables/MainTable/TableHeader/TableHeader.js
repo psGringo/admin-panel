@@ -4,7 +4,7 @@ import {ReactComponent as V_Arrow} from "../../../../static/v_arrow.svg";
 import cc from "classcat";
 import {Checkbox} from "../../../Checkboxes/Checkbox/Checkbox";
 import {useDispatch, useSelector} from "react-redux";
-import {sortTableRows, toggleAllRowsChecked, toggleRowChecked} from "../../../../actions/tableDataActions";
+import {sortTableRows, toggleAllRowsChecked} from "../../../../actions/tableDataActions";
 
 export const TableHeader = () => {
 

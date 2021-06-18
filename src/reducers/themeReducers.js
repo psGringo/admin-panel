@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 }
 
 function handleToggleTheme(state, isLightTheme) {
-    const {isLight} = state;
+
     return {
         ...state,
         isLight: isLightTheme

@@ -6,10 +6,8 @@
 
 .title {
     color: #459DF5;
-    font-size: 1rem;
     margin-left: 0.75rem;
-    font-family: Ubuntu;
-    font-weight: 400;
+    cursor: pointer;
 }
 
 .icon {

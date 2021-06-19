@@ -1,0 +1,23 @@
+._ {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 96%;
+    height: 2rem;
+    margin-top: 0.5rem;
+    background-color: #EBF0F5;
+}
+
+.title {
+    margin-right: 1rem;
+}
+
+.price {
+    width: 7.5rem;
+}
+
+.darkThemeContent {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

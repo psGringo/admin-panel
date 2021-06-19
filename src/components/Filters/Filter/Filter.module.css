@@ -1,0 +1,10 @@
+._ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.625rem;
+}

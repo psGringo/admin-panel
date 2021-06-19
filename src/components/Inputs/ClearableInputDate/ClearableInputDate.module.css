@@ -1,0 +1,46 @@
+._ {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;
+    border: 1px solid #459DF5;
+    border-radius: 5px;
+    background-color: white;
+    width: 10rem;
+}
+
+._:hover {
+    box-shadow: 1px 1px 1px thistle;
+}
+
+.input {
+    padding-left: 5px;
+    border: none;
+    width: 7.5rem;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+}
+
+.firstLetter {
+    min-height: 1rem;
+    margin-bottom: 0.1rem;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+    stroke: deepskyblue;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.darkTheme {
+    background-color: #2B2D33;
+    color: #BCC4CC;
+}
+

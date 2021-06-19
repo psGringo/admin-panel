@@ -1,0 +1,13 @@
+._ {
+    display: flex;
+    justify-content: center;
+    width: 7rem;
+    height: 1.5rem;
+    color: #459DF5;
+    margin-top: 2.3rem;
+    margin-left: -1rem;
+}
+
+.darkTheme {
+    background-color: #1F2629;
+}

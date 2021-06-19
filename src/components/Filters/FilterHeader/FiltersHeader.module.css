@@ -1,0 +1,9 @@
+._ {
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchBoxAndFiltersToggleButton {
+    display: flex;
+    justify-content: space-evenly;
+}

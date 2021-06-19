@@ -1,0 +1,11 @@
+._ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.625rem;
+}

@@ -1,0 +1,17 @@
+._ {
+    width: 12rem;
+    height: 1.5rem;
+    color: white;
+    background-color: #459DF5;
+    margin: 0.5rem 1rem;
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.darkTheme {
+    background-color: #459DF5;
+    color: #2B2D33;
+}
+

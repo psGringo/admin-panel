@@ -1,0 +1,29 @@
+._ {
+    display: flex;
+    border-bottom: 0.05rem;
+    border-bottom-color: #EBF0F5;
+    border-bottom-style: solid;
+    cursor: pointer;
+}
+
+.titlePerson {
+    flex-grow: 1;
+}
+
+.icon {
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.orange {
+    filter: invert(72%) sepia(22%) saturate(3034%) hue-rotate(321deg) brightness(100%) contrast(102%)
+}
+
+.blue {
+    filter: invert(68%) sepia(74%) saturate(4398%) hue-rotate(188deg) brightness(101%) contrast(92%)
+}
+
+.green {
+    filter: invert(54%) sepia(52%) saturate(2779%) hue-rotate(113deg) brightness(95%) contrast(88%);
+}

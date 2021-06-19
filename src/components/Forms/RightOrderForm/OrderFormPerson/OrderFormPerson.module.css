@@ -1,0 +1,28 @@
+._ {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+}
+
+.title {
+    margin-left: 1rem;
+}
+
+.value {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 90%;
+    text-align: left;
+
+    padding: 0.3rem;
+    border: 1px solid #459DF5;
+    border-radius: 5px;
+    background-color: white;
+}
+
+
+.darkTheme {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

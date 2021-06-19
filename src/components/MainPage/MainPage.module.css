@@ -1,0 +1,13 @@
+._ {
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content;
+    min-width: fit-content;
+    height: 88vh;
+    margin: 3rem;
+}
+
+.darkTheme {
+    background-color: #2B2D33;
+    color: #BCC4CC;
+}

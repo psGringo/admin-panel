@@ -4,11 +4,11 @@ import {Theme} from "../Theme/Theme";
 
 
 export const Header = () => {
+
     return (
         <div className={styles._}>
-            <div className={styles.title}> Список заказов</div>
-            {/*<div>123</div>*/}
-            <Theme />
+            <div className={styles.title} > Список заказов</div>
+            <Theme/>
         </div>
     );
 }

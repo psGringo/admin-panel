@@ -1,0 +1,36 @@
+._ {
+    display: flex;
+    margin-top: 0.3rem;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    color: #EBF0F5;
+    background-color: #459DF5;
+    width: 10rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.titleFirstColumn {
+    display: flex;
+    margin-left: 1rem;
+}
+
+.titlePerson {
+    flex-grow: 1;
+}
+
+.id {
+    margin-left: 1rem;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+.darkTheme {
+    color: #1F2629;
+}

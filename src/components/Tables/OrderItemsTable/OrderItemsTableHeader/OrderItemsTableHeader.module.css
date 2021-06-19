@@ -1,0 +1,27 @@
+._ {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 96%;
+    height: 2rem;
+    background-color: #459DF5;
+    color: white;
+}
+
+.art {
+    width: 5rem;
+    margin-left: 1rem;
+}
+
+.title {
+    flex-grow: 1;
+}
+
+.price {
+    width: 7rem;
+}
+
+.darkTheme {
+    color: #1F2629;
+}

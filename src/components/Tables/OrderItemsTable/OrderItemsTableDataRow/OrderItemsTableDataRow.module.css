@@ -1,0 +1,20 @@
+._ {
+    display: flex;
+    border-bottom: 0.05rem;
+    border-bottom-color: #EBF0F5;
+    border-bottom-style: solid;
+    width: 95%;
+}
+
+.art {
+    width: 5rem;
+    margin-left: 1rem;
+}
+
+.title {
+    flex-grow: 1;
+}
+
+.price {
+    width: 7rem;
+}

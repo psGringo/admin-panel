@@ -1,0 +1,11 @@
+._ {
+    display: flex;
+    align-items: center;
+    background-color: #EBF0F5;
+    margin-top: 1rem;
+}
+
+.darkTheme {
+    background-color: #1F2629;
+    color: #BCC4CC;
+}

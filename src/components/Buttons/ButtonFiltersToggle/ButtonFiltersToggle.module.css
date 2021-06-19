@@ -1,0 +1,18 @@
+._ {
+    width: 9rem;
+    height: 2rem;
+    background-color: white;
+    color: #459DF5;
+    margin-left: 1rem;
+}
+
+._:hover {
+    background-color: #459DF5;
+    color: white;
+}
+
+.darkTheme {
+    background-color: #459DF5;
+    color: #2B2D33;
+}
+
